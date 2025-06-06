@@ -10,16 +10,20 @@
 
 - 🔍 **Auto Metadata Detection**
   - Fetches IMDb ID, TMDb ID, trailer link, poster, and more
+- ⚙️ **Automatically Torrent Creator**
+  - Generates `.torrent` file with optimal settings
+- 📄 **Media Info Generator**
+  - Extracts and formats technical details using MediaInfo
+- 🖼️ **Screenshot Generator**
+  - Captures screenshots and uploads them to your preferred image host
 - 🧾 **BBCode Description Generator**
   - Includes poster, screenshots, MediaInfo, IMDb/TMDb/YouTube links
-- 🎞️ **Media Info Formatter**
-  - Full detailed MediaInfo grouped by sections
 - 📁 **Smart Category Selector**
   - Automatically detects or manually sets the correct category
 - 📡 **Freeleech Checker**
   - Calculates and checks if upload qualifies for freeleech
-- 🔐 **Cookie Authentication**
-  - Upload securely using your `uid` and `pass` cookies
+- 📤 **Automatically Upload Torrent**
+  - Full automation from detection to upload
 - 💻 **Command-line Friendly**
   - Flexible CLI arguments with custom options
 
@@ -36,6 +40,13 @@ pip install -r data/requirements.txt
 ```
 
 ### 🛠️ System Tools (Required)
+
+These must be installed and accessible from your system’s PATH:
+
+- [Python](https://www.python.org/downloads/) – version 3.8 or higher
+- [FFmpeg](https://ffmpeg.org/download.html) – for trailer handling and screenshots
+- [MediaInfo](https://mediaarea.net/en/MediaInfo) – for detailed media metadata
+
 
 You must have these tools installed and accessible from your system’s PATH:
 

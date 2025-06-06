@@ -1,0 +1,51 @@
+General;"
+★ General ★
+File Name.............: %FileNameExtension%
+Format................: %Format% (%Format_Version%)
+Duration..............: %Duration/String2% (%Duration/String3%)
+Overall Bitrate.......: %OverallBitRate/String% %OverallBitRate_Mode/String%
+File Size.............: %FileSize/String4%"
+
+Video;"
+★ Video Track ★
+$if(%Title%,Title ................: %Title%,)
+Format................: %Format% (%BitDepth/String%)
+Format Profile........: %Format_Profile%
+Resolution............: %Width% x %Height%
+Aspect Ratio..........: %DisplayAspectRatio/String%
+Bit Rate..............: %BitRate/String% %BitRate_Mode%
+Frame Rate............: %FrameRate/String% (%FrameRate_Mode%)$if(%colour_primaries%,
+Color Primaries.......: %colour_primaries%,)$if(%Encoded_Library/String%,
+Encoding Library......: %Encoded_Library/String%,)"
+
+Audio;" $if(%StreamKindPos%,
+Track 0%StreamKindPos%:) $if(%Title%,
+Title ................: %Title%,)
+Language..............: %Language/String%
+Format................: %Format_Commercial% (%Format/String%)
+Bitrate...............: %BitRate/String% (%BitRate_Mode%) : %SamplingRate/String%
+Channels..............: %Channel(s)/String% (%ChannelPositions%)\n"
+
+Text;"
+Language .............: $if(%Title%,%Title% - ,)%Language/String% (%Format_Commercial%)\n"
+
+Chapters;
+File_Begin
+File_End
+Page_Begin
+Page_Middle
+Page_End
+General_Begin
+General_End
+Video_Begin
+Video_Middle
+Video_End
+Audio_Begin;\n★ Audio Track ★
+Audio_Middle
+Audio_End
+Text_Begin;\n★ Subtitle ★
+Text_Middle
+Text_End;
+Chapters_Begin
+Chapters_Middle
+Chapters_End

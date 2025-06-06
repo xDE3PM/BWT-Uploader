@@ -1,0 +1,57 @@
+# config.py
+
+config = {
+    "TMDb": {
+        # TMDb API key is required to fetch metadata (e.g., title, poster, etc.)
+        "API_KEY": "tmdb_api_key"
+    },
+
+    # Number of screenshots to be taken from the video file (should be an integer)
+    "screenshots_number": 8,
+
+    # Choose an image host for uploading screenshots. 
+    # Available options: "Freeimage", "Imgbb", "Imageride", "Lookmyimg", "Onlyimg", "PTScreen"
+    # Default is "Imageride"
+    "image_host": "Imageride",
+
+    # API keys for each supported image host (only the one used will be required)
+    "image_host_api_key": {
+        "Freeimage": "Freeimage_api_key",     # Required if image_host is "Freeimage"
+        "Imgbb": "Imgbb_api_key",             # Required if image_host is "Imgbb"
+        "Imageride": "Imageride_api_key",     # Required if image_host is "Imageride"
+        "Lookmyimg": "_api_key",              # Required if image_host is "Lookmyimg"
+        "Onlyimg": "Onlyimg_api_key",         # Required if image_host is "Onlyimg"
+        "PTScreen": "PTScreen_api_key"        # Required if image_host is "PTScreen"
+    }
+}
+
+# Default BBCode template for the torrent description.
+# You may customize the visual style and layout, but DO NOT remove the following placeholders:
+#   - {movie_poster_url} : replaced with movie/series poster image URL
+#   - {file_name}        : replaced with the actual file name
+#   - {mediainfo}        : replaced with formatted MediaInfo output
+#   - {screenshot_bbcode}: replaced with BBCode of uploaded screenshots
+
+BBCODE_TEMPLATE = """
+[center]
+[img]{movie_poster_url}[/img]
+
+[b][size=4][color=red]
+[font=Courier New]{file_name}[/font][/color]
+[/size][/b]
+
+[img]https://i.ibb.co/DfF7Pbt/Media-Info.png[/img]
+
+†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****††*****†*****†*****†*****†
+
+{mediainfo}
+
+†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****††*****†*****†*****†*****†
+
+[img]https://i.ibb.co/9vZTnQk/Screenshot.png[/img]
+
+{screenshot_bbcode}
+
+[b][size=5][color=green][font=Courier New]....Enjoying & Keep Seeding if possible....[/font][/color][/size][/b]
+[/center]
+"""

@@ -1,0 +1,108 @@
+| Value | Category                       |
+| ----- | ------------------------------ |
+| 0     | (choose one)                   |
+| 178   | Anime                          |
+| 179   | Appz                           |
+| 145   | Bangla-Movies                  |
+| 143   | Bhoipuri-Movies                |
+| 120   | Bollywood - 1080p WEB-Rips     |
+| 188   | Bollywood - 720p WEB-Rips      |
+| 123   | Bollywood - SDRips - WEB/DVD   |
+| 125   | Bollywood- Web Series          |
+| 116   | Bollywood-1080p BluRay Rips    |
+| 124   | Bollywood-3D-Movies            |
+| 114   | Bollywood-4K Ultra HD / Upscal |
+| 117   | Bollywood-720p BluRay Rips     |
+| 122   | Bollywood-DVDRips 1080p/720p   |
+| 189   | Bollywood-Encoded DVDs         |
+| 190   | Bollywood-Movie Packs          |
+| 113   | Bollywood-Pre-Release          |
+| 118   | Bollywood-Remuxes BluRay       |
+| 115   | Bollywood-Untouched BluRay     |
+| 121   | Bollywood-Untouched DVDs       |
+| 119   | Bollywood-Untouched WEB-DLs    |
+| 186   | Dangal-Tv                      |
+| 175   | EBooks                         |
+| 183   | English Movies Hindi Dubbed    |
+| 177   | Games Console                  |
+| 176   | Games PC                       |
+| 185   | Gujarati-Movies                |
+| 194   | Hollywood - Movie Packs        |
+| 192   | Hollywood- 720p WEB-Rips       |
+| 193   | Hollywood- SDRips - WEB/DVD    |
+| 128   | Hollywood-1080p BluRay Rips    |
+| 132   | Hollywood-1080p WEB-Rips       |
+| 135   | Hollywood-3D-Movies            |
+| 126   | Hollywood-4K Ultra HD / Upscal |
+| 129   | Hollywood-720p BluRay Rips     |
+| 130   | Hollywood-BluRay Remuxes       |
+| 134   | Hollywood-DVDRips 1080p/720p   |
+| 191   | Hollywood-Encoded DVDs         |
+| 136   | Hollywood-Pre-Release          |
+| 127   | Hollywood-Untouched BluRay     |
+| 133   | Hollywood-Untouched DVDs       |
+| 131   | Hollywood-Untouched WEB-DLs    |
+| 141   | Kannada-Movies                 |
+| 142   | Lollywood-Movies               |
+| 137   | Malayalam-Movies               |
+| 144   | Marathi-Movies                 |
+| 180   | Mobile Stuff                   |
+| 196   | Music Packs                    |
+| 160   | Music-Classical                |
+| 161   | Music-Flacs                    |
+| 162   | Music-Ghazals                  |
+| 163   | Music-Hindi OSTs               |
+| 164   | Music-Instrumental             |
+| 165   | Music-Kannada Music            |
+| 166   | Music-Lollywood Music          |
+| 167   | Music-Malayalam Music          |
+| 168   | Music-Marathi Music            |
+| 170   | Music-Pop-Music                |
+| 171   | Music-Punjabi-Music            |
+| 172   | Music-Remix                    |
+| 173   | Music-Tamil Music              |
+| 174   | Music-Telugu Music             |
+| 169   | Music-Videos                   |
+| 182   | Other Movies                   |
+| 181   | Pics/Wallpapers                |
+| 140   | Punjabi-Movies                 |
+| 159   | Religion & Spirituality Audio  |
+| 184   | South Hindi Dubbed             |
+| 211   | Tamil-1080p/720p WEBRips       |
+| 209   | Tamil-4K Ultra HD - Upscaled   |
+| 216   | Tamil-BluRay Rips              |
+| 215   | Tamil-Movie Packs              |
+| 217   | Tamil-Remuxes BluRay           |
+| 214   | Tamil-SD-WEBRips / DVDRips     |
+| 212   | Tamil-Untouched BluRay         |
+| 213   | Tamil-Untouched DVDs           |
+| 210   | Tamil-Untouched WEB-DLs        |
+| 201   | Telugu-1080p/720p WEBRips      |
+| 199   | Telugu-4K Ultra HD - Upscaled  |
+| 207   | Telugu-BluRay Rips             |
+| 205   | Telugu-Movie Packs             |
+| 208   | Telugu-Remuxes BluRay          |
+| 204   | Telugu-SD-WEBRips / DVDRips    |
+| 202   | Telugu-Untouched BluRay        |
+| 203   | Telugu-Untouched DVDs          |
+| 200   | Telugu-Untouched WEB-DLs       |
+| 197   | Turkish Hindi Dubbed           |
+| 147   | TV - \&Tv                      |
+| 219   | TV-Bengali                     |
+| 146   | TV-Colors                      |
+| 156   | TV-Documentary                 |
+| 157   | TV-Hollywood                   |
+| 218   | TV-Ishara TV                   |
+| 221   | TV-JioTv                       |
+| 148   | TV-Life OK                     |
+| 198   | TV-MTV                         |
+| 158   | TV-Others                      |
+| 195   | TV-Packs                       |
+| 149   | TV-Pakistani Dramas            |
+| 150   | TV-Sab TV                      |
+| 220   | TV-Shemaroo Umang              |
+| 151   | TV-Sony                        |
+| 155   | TV-Sports                      |
+| 152   | TV-Star Bharat                 |
+| 153   | TV-Star Plus                   |
+| 154   | TV-Zee TV                      |

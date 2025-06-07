@@ -74,14 +74,16 @@ You must have these tools installed and accessible from your system’s PATH:
 
    Then edit `data/config.py` to fill in the required details like your TMDb API key, image host API key, etc.
 
-6. Save as BWT.txt and YouTube.txt in the data/cookies directory.
+6. Save as `BWT.txt` and `YouTube.txt` in the `data/cookies` directory.
+
 <details>
-   <summary>Click for more details</summary>
-# Cookie Files Setup
+<summary>Click for more details</summary>
+
+### 🍪 Cookie Files Setup
 
 To proceed with authentication or session-based access, please **save your Netscape HTTP Cookies file in this directory**.
 
-## Required Files
+#### Required Files
 
 - `BWT.txt`  
   Save the cookies from your browser (exported in Netscape HTTP Cookie File format) for the **BWT** service here.
@@ -89,14 +91,15 @@ To proceed with authentication or session-based access, please **save your Netsc
 - `YouTube.txt`  
   Save the cookies from your browser (exported in Netscape HTTP Cookie File format) for **YouTube** access here.
 
-## How to Export Cookies
+#### How to Export Cookies
 
 1. Use a browser extension like **[Get cookies.txt](https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc)**.
 2. Visit the target website while logged in.
 3. Click the extension icon and export cookies.
 4. Save the file in this directory as `BWT.txt` and `YouTube.txt` accordingly.
 
-> Make sure the files are in the **Netscape HTTP Cookie File format**, otherwise they won't work.
+> ⚠️ Make sure the files are in the **Netscape HTTP Cookie File format**, otherwise they won't work.
+
 </details>
 
 7. Run the uploader:
@@ -116,6 +119,7 @@ To proceed with authentication or session-based access, please **save your Netsc
    ```bash
    python upload.py -h
    ```
+
 ---
 
 ### 💡 CLI Help

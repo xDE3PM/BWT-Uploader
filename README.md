@@ -72,7 +72,7 @@ You must have these tools installed and accessible from your system’s PATH:
    cp data/example_config.py data/config.py
    ```
 
-   Then edit `data/config.py` to fill in the required details like your cookies, image host API key, etc.
+   Then edit `data/config.py` to fill in the required details like your TMDb API key, image host API key, etc.
 
 6. Run the uploader:
 

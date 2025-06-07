@@ -259,10 +259,9 @@ class BWTorrentUploader:
         freeleech = self.freeleech_check(filepath)
         bwt_name = meta['name']
         while True:
-            print(f"\n[bold cyan]BWT Name :[/bold cyan] [bold green]{bwt_name}[/bold green]\n")
+            console.print(f"\n[bold cyan]BWT Name :[/bold cyan] [bold]{bwt_name}[/bold]\n")
             confirmation = Prompt.ask("[bold magenta]:: Correct? (y/N)[/bold magenta]").strip().lower()
             if confirmation == 'y':
-                print("[bold green]✅ Uploading...[/bold green]")
                 break
             else:
                 bwt_name = ask_bwt_name()

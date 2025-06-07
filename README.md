@@ -93,15 +93,7 @@ You must have these tools installed and accessible from your system’s PATH:
    ```
 ---
 
-## 🏁 Basic Usage
-
-Run the script with the path to your video file or folder:
-
-```bash
-python upload.py "file_path"
-```
-
-### 💡 CLI Argument Help
+### 💡 CLI Help
 
 | Argument              | Shortcut  | Description |
 |-----------------------|-----------|-------------|

@@ -61,6 +61,7 @@ class Description:
         new_content = textwrap.dedent(BBCODE_TEMPLATE).format(
             movie_poster_url=movie_poster_url,
             file_name=file_name,
+            mediainfo=mediainfo,
             screenshot_bbcode=screenshot_bbcode
         )
 

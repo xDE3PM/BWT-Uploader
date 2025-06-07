@@ -249,6 +249,7 @@ class BWTorrentUploader:
         return cookies
 
     def ask_bwt_name(self):
+        print()
         return Prompt.ask("[bold yellow]Enter BWT Name[/bold yellow]")
     
     def upload(self):
@@ -259,7 +260,7 @@ class BWTorrentUploader:
         freeleech = self.freeleech_check(filepath)
         bwt_name = meta['name']
         while True:
-            console.print(f"\n[bold cyan]BWT Name :[/bold cyan] [bold]{bwt_name}[/bold]\n")
+            console.print(f"\n[bold cyan]BWT Name :[/bold cyan] [bold]{bwt_name}[/bold]")
             confirmation = Prompt.ask("[bold magenta]:: Correct? (y/N)[/bold magenta]").strip().lower()
             if confirmation == 'y':
                 break
@@ -288,8 +289,9 @@ class BWTorrentUploader:
             data['recomanded'] = '1'
         if freeleech == '1':
             data['free'] = '1'
-        
-        confirm = Prompt.ask("[bold] Continue to Upload This?", choices=["y", "N"], case_sensitive=False) 
+
+        print()
+        confirm = Prompt.ask("[bold]Continue to Upload This?", choices=["y", "N"], case_sensitive=False) 
         if confirm.lower() != "y":
             console.print("[red]Exiting...[/red]")
             sys.exit(0)

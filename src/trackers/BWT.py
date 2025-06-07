@@ -248,15 +248,27 @@ class BWTorrentUploader:
                     cookies[parts[5]] = parts[6]
         return cookies
 
+    def ask_bwt_name():
+        return Prompt.ask("[bold yellow]Enter BWT Name[/bold yellow]")
+    
     def upload(self):
         filepath = self.filepath
         torrent_path = self.torrent_path
         meta = self.load_metadata()
         cookies = self.load_cookies()
         freeleech = self.freeleech_check(filepath)
+        bwt_name = meta['name']
+        while True:
+            print(f"\n[bold cyan]BWT Name :[/bold cyan] [bold green]{bwt_name}[/bold green]\n")
+            confirmation = Prompt.ask("[bold magenta]:: Correct? (y/N)[/bold magenta]").strip().lower()
+            if confirmation == 'y':
+                print("[bold green]✅ Uploading...[/bold green]")
+                break
+            else:
+                bwt_name = ask_bwt_name()
 
         data = {
-            'name': meta['name'],
+            'name': bwt_name,
             'descr': meta['description'],
             'type': meta['category_id'],
         }

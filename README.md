@@ -35,7 +35,7 @@
 
 You must have these tools installed and accessible from your system’s PATH:
 
-- [Python](https://www.python.org/downloads/) – version 3.8 or higher
+- [Python 3.8+](https://www.python.org/downloads/)
 - [FFmpeg](https://ffmpeg.org/download.html)
 - [MediaInfo](https://mediaarea.net/en/MediaInfo)
 
@@ -77,13 +77,13 @@ You must have these tools installed and accessible from your system’s PATH:
 6. Run the uploader:
 
    ```bash
-   python upload.py "path/to/your/file.mkv"
+   python upload.py "path/to/your/file"
    ```
 
    You can also use the optional arguments:
 
    ```bash
-   python upload.py "file_path" --imdb 1234567 --tmdb 7654321 --catagory 132 --request --recomanded --doubleupload
+   python upload.py "path/to/your/file" --imdb 1234567 --tmdb 7654321 --catagory 132 --request --recomanded --doubleupload
    ```
 
 7. For help:

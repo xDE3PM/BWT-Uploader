@@ -12,7 +12,7 @@ To proceed with authentication or session-based access, please **save your Netsc
 
 ## How to Export Cookies
 
-1. Use a browser extension like **[Get cookies.txt](https://chrome.google.com/webstore/detail/get-cookiestxt/)**.
+1. Use a browser extension like **[Get cookies.txt](https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc)**.
 2. Visit the target website while logged in.
 3. Click the extension icon and export cookies.
 4. Save the file in this directory as `BWT.txt` or `YouTube.txt` accordingly.

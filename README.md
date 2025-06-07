@@ -1,4 +1,4 @@
-# 🚀 BWT-Uploader V 1.0.0 Beta 
+# 🚀 BWT-Uploader v1.0.0 Beta 
 
 **BWT-Uploader** is a powerful Python-based automation tool for uploading torrents to [BwTorrents](https://bwtorrents.tv). It automatically fetches metadata, handles MediaInfo, and generates BBCode descriptions — making the upload process fast and hassle-free.
 

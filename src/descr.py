@@ -30,7 +30,7 @@ class Description:
         cleaned_lines = []
         for i in range(len(lines)):
             if i + 1 < len(lines) and '★ Subtitle ★' in lines[i + 1]:
-                continue  # Skip the line before
+                continue
             cleaned_lines.append(lines[i])
         mediainfo = '\n'.join(cleaned_lines)
 

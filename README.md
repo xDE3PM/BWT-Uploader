@@ -128,8 +128,8 @@ To proceed with authentication or session-based access, please **save your Netsc
 |-----------------------|-----------|-------------|
 | `filepath`            | *(positional)* | Path to the file/folder to upload |
 | `--version`           | `-v`      | Show version info |
-| `--imdb`              |           | Manually enter IMDb ID (e.g., `1234567`) |
-| `--tmdb`              |           | Manually enter TMDb ID (e.g., `123456`) |
+| `--imdb`              | `-i`          | Manually enter IMDb ID (e.g., `1234567`) |
+| `--tmdb`              | `-t`          | Manually enter TMDb ID (e.g., `123456`) |
 | `--request`           | `-r`      | Mark torrent as a request |
 | `--recomanded`        | `-rm`     | Mark torrent as recommended |
 | `--doubleupload`      | `-du`     | Enable double upload mode |

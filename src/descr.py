@@ -11,11 +11,12 @@ class Description:
         self.file_info = FilePathInfo()
         self.fmeta = self.file_info.process()
         self.upload_folder = self.fmeta.get('upload_folder')
+        self.filename_noext = self.fmeta.get('filename_noext')
         self.description_bbcode_path = os.path.join(self.upload_folder, "[BBCode]Torrent_Description.txt")
         self.media_info_path = os.path.join(self.upload_folder, "Custom_Media_Info.txt")
         self.screenshot_links = os.path.join(self.upload_folder, "screenshots/uploaddata/bbcode_medium.txt")
         
-    def generate(self, more_backdrop_link):
+    def generate(self, movie_poster_url):
         if os.path.exists(self.description_bbcode_path):
             return
 
@@ -25,7 +26,6 @@ class Description:
         with open(self.media_info_path, "r", encoding="utf-8") as f:
             mediainfo = f.read().strip()
 
-        # 🔹 Remove the line before "★ Subtitle ★"
         lines = mediainfo.splitlines()
         cleaned_lines = []
         for i in range(len(lines)):
@@ -34,7 +34,6 @@ class Description:
             cleaned_lines.append(lines[i])
         mediainfo = '\n'.join(cleaned_lines)
 
-        # 🔹 Apply BBCode formatting
         mediainfo = mediainfo.replace(
             '★ General ★',
             '[quote]\n[b][color=green]★ General ★[/color][/b]\n[font=Courier New]'
@@ -53,10 +52,7 @@ class Description:
         )
         mediainfo += '\n[/font]\n[/quote]'
 
-        console.print(f"[bold cyan]\n TMDb Backdrop Images:[/bold cyan] {more_backdrop_link}")
-        movie_poster_url = Prompt.ask("[bold cyan] Enter Backdrop poster URL:[/bold cyan]")
-
-        file_name = os.path.basename(self.file_info.video_path).strip()
+        file_name = self.filename_noext
 
         new_content = textwrap.dedent(BBCODE_TEMPLATE).format(
             movie_poster_url=movie_poster_url,

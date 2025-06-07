@@ -41,33 +41,56 @@ You must have these tools installed and accessible from your system’s PATH:
 
 ---
 
-## 📦 How to Use
+## 🚀 How to Use
 
-### 🔧 Setup Guide
+1. Clone this repo:
 
-1. **Clone this repository**
+   ```bash
+   git clone https://github.com/xDE3PM/BWT-Uploader.git
+   ```
 
-    ```bash
-    git clone https://github.com/xDE3PM/BWT-Uploader
-    ```
+2. Change directory:
 
-2. **Navigate to the project folder**
+   ```bash
+   cd BWT-Uploader
+   ```
 
-    ```bash
-    cd BWT-Uploader
-    ```
+3. Install dependencies:
 
-3. **Install dependencies**
+   ```bash
+   pip install -r data/requirements.txt
+   ```
 
-    ```bash
-    pip install -r data/requirements.txt
-    ```
+4. Ensure system tools are installed:
+   - Python 3.8+
+   - FFmpeg
+   - MediaInfo
 
-4. **Install required system tools** (if not already):
+5. Copy and configure:
 
-    - **FFmpeg:** [Install Guide](https://ffmpeg.org/download.html)
-    - **MediaInfo:** [Install Guide](https://mediaarea.net/en/MediaInfo)
+   ```bash
+   cp data/example_config.py data/config.py
+   ```
 
+   Then edit `data/config.py` to fill in the required details like your cookies, image host API key, etc.
+
+6. Run the uploader:
+
+   ```bash
+   python upload.py "path/to/your/file.mkv"
+   ```
+
+   You can also use the optional arguments:
+
+   ```bash
+   python upload.py "file_path" --imdb 1234567 --tmdb 7654321 --catagory 132 --request --recomanded --doubleupload
+   ```
+
+7. For help:
+
+   ```bash
+   python upload.py -h
+   ```
 ---
 
 ## 🏁 Basic Usage

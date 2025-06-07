@@ -84,7 +84,7 @@ python upload.py "file_path"
 |-----------------------|-----------|-------------|
 | `filepath`            | *(positional)* | Path to the file/folder to upload |
 | `--version`           | `-v`      | Show version info |
-| `--imdb`              |           | Manually enter IMDb ID (e.g., `tt1234567`) |
+| `--imdb`              |           | Manually enter IMDb ID (e.g., `1234567`) |
 | `--tmdb`              |           | Manually enter TMDb ID (e.g., `123456`) |
 | `--request`           | `-r`      | Mark torrent as a request |
 | `--recomanded`        | `-rm`     | Mark torrent as recommended |

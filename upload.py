@@ -15,7 +15,7 @@ from src.minfo import MediaInfoGenerator
 from src.screens import Screens
 from src.uph import mdprint
 from src.descr import Description
-from src.trackers.BWT import BWTorrentUploader
+from src.tracker.BWT import BWTorrentUploader
 
 def main():
     console.rule("[bold magenta]🚀 BWT-Uploader [bold yellow]v1.0.0 [bold green]- Created by [bold red]-=DE3PM=-", style="bold cyan")

@@ -17,4 +17,4 @@ To proceed with authentication or session-based access, please **save your Netsc
 3. Click the extension icon and export cookies.
 4. Save the file in this directory as `BWT.txt` or `YouTube.txt` accordingly.
 
-> âš ï¸ Make sure the files are in the **Netscape HTTP Cookie File format**, otherwise they won't work.
+> Make sure the files are in the **Netscape HTTP Cookie File format**, otherwise they won't work.

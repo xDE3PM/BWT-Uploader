@@ -142,7 +142,7 @@ class BWTorrentUploader:
 
         imdb_link = metadata.get("imdb", {}).get("link", "")
         youtube_link = metadata.get("trailer", {}).get("url", "")
-        name = metadata.get("FilePathInfo", {}).get("filename_noext", "")
+        name = self.filename
         poster = metadata.get("tmdb", {}).get("poster") or metadata.get("imdb", {}).get("poster", "")
         category_id = metadata.get("catagory_id") or self.select_category()
         request = metadata.get("request")
@@ -185,7 +185,6 @@ class BWTorrentUploader:
         if os.path.isfile(folder_path):
             try:
                 total_size_gb = os.path.getsize(folder_path) / (1024 ** 3)
-                console.print(f"[bold cyan]File Size:[/bold cyan] {total_size_gb:.2f} GB for {folder_path}")
             except OSError as e:
                 console.print(f"[bold red]Error:[/bold red] Could not read file size for {folder_path}: {e}")
                 return '0'
@@ -201,14 +200,14 @@ class BWTorrentUploader:
                         except OSError as e:
                             console.print(f"[bold red]Error:[/bold red] Could not read size for {file_path}: {e}")
                             continue
-                console.print(f"[bold cyan]Total Size:[/bold cyan] {total_size_gb:.2f} GB for folder {folder_path}")
             except Exception as e:
                 console.print(f"[bold red]Error:[/bold red] Failed to scan folder {folder_path}: {e}")
                 return '0'
         
         # Return '1' for freeleech if size >= 10 GB, '0' otherwise
         freeleech = '1' if total_size_gb >= 10 else '0'
-        console.print(f"[bold green]Freeleech Status:[/bold green] {freeleech} (Size: {total_size_gb:.2f} GB)")
+        if freeleech == '1':
+            console.print(f"[bold green]Freeleech Status:[/bold green] True (Size: {total_size_gb:.2f} GB)")
         return freeleech
 
     def select_category(self):
@@ -278,8 +277,6 @@ class BWTorrentUploader:
             data['recomanded'] = '1'
         if freeleech == '1':
             data['free'] = '1'
-
-        print(data)
         
         confirm = Prompt.ask("[bold] Continue to Upload This?", choices=["y", "N"], case_sensitive=False) 
         if confirm.lower() != "y":

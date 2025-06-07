@@ -44,8 +44,7 @@ def main():
     manager = Screens()
     manager.generate_screenshots()
     manager.upload_images()
-    # movie_poster_url = details["tmdb"]["poster"] or details["imdb"]["poster"]
-    more_backdrop_link = details["tmdb"]["more_backdrop"]
+    movie_poster_url = details["tmdb"]["poster"] or details["imdb"]["poster"]
     description = Description()
     description.generate(more_backdrop_link)
     bwtup = BWTorrentUploader()
@@ -55,3 +54,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+##############
+# -= DE3PM=- #
+##############

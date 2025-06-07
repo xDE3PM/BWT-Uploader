@@ -46,7 +46,7 @@ def main():
     manager.upload_images()
     movie_poster_url = details["tmdb"]["poster"] or details["imdb"]["poster"]
     description = Description()
-    description.generate(more_backdrop_link)
+    description.generate(movie_poster_url)
     bwtup = BWTorrentUploader()
     bwtup.upload()
 

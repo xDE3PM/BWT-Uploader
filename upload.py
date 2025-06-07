@@ -19,7 +19,7 @@ from src.tracker.BWT import BWTorrentUploader
 from src.version import version, author
 
 def main():
-    console.rule("[bold magenta]🚀 BWT-Uploader [bold yellow]v{version} [bold green]- Created by [bold red]-={author}=-", style="bold cyan")
+    console.rule(f"[bold magenta]🚀 BWT-Uploader [bold yellow]v{version} [bold green]- Created by [bold red]-={author}=-", style="bold cyan")
     args = Args()
     meta_args = args.gmeta()
 

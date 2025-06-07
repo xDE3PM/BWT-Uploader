@@ -27,8 +27,8 @@ class Args:
     def add_arguments(self):
         self.parser.add_argument("filepath", nargs="?", help="Enter your Filepath of the file you want to upload...")
         self.parser.add_argument("--version", "-v", action="version", version="BWT-Uploader 1.0.0")
-        self.parser.add_argument("--imdb", help="Enter your IMDb ID Number (e.g., 1234567)")
-        self.parser.add_argument("--tmdb", help="Enter your TMDb ID Number (e.g., 123456)")
+        self.parser.add_argument("--imdb", "-i", help="Enter your IMDb ID Number (e.g., 1234567)")
+        self.parser.add_argument("--tmdb", "-t", help="Enter your TMDb ID Number (e.g., 123456)")
         self.parser.add_argument("--request", "-r", action="store_true", help="Mark torrent as fulfilling a request")
         self.parser.add_argument("--recomanded", "-rm", action="store_true", help="Mark torrent as a recommended upload")
         self.parser.add_argument("--doubleupload", "-du", action="store_true", help="Enable double upload option")

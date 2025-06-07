@@ -1,4 +1,4 @@
-# 🎞️ BWT-Uploader
+# 🚀 BWT-Uploader V 1.0.0 Beta 
 
 **BWT-Uploader** is a powerful Python-based automation tool for uploading torrents to [BwTorrents](https://bwtorrents.tv). It automatically fetches metadata, handles MediaInfo, and generates BBCode descriptions — making the upload process fast and hassle-free.
 
@@ -123,7 +123,6 @@ Use the following Category ID when using the `--catagory` or `-c` argument:
 
 | Value | Category                       |
 | ----- | ------------------------------ |
-| 0     | (choose one)                   |
 | 178   | Anime                          |
 | 179   | Appz                           |
 | 145   | Bangla-Movies                  |

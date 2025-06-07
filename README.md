@@ -74,7 +74,32 @@ You must have these tools installed and accessible from your system’s PATH:
 
    Then edit `data/config.py` to fill in the required details like your TMDb API key, image host API key, etc.
 
-6. Run the uploader:
+6. Save as BWT.txt and YouTube.txt in the data/cookies directory.
+<details>
+<summary>Click for more details</summary>
+# Cookie Files Setup
+
+To proceed with authentication or session-based access, please **save your Netscape HTTP Cookies file in this directory**.
+
+## Required Files
+
+- `BWT.txt`  
+  Save the cookies from your browser (exported in Netscape HTTP Cookie File format) for the **BWT** service here.
+
+- `YouTube.txt`  
+  Save the cookies from your browser (exported in Netscape HTTP Cookie File format) for **YouTube** access here.
+
+## How to Export Cookies
+
+1. Use a browser extension like **[Get cookies.txt](https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc)**.
+2. Visit the target website while logged in.
+3. Click the extension icon and export cookies.
+4. Save the file in this directory as `BWT.txt` and `YouTube.txt` accordingly.
+
+> Make sure the files are in the **Netscape HTTP Cookie File format**, otherwise they won't work.
+</details>
+
+7. Run the uploader:
 
    ```bash
    python upload.py "path/to/your/file"
@@ -86,7 +111,7 @@ You must have these tools installed and accessible from your system’s PATH:
    python upload.py "path/to/your/file" --imdb 1234567 --tmdb 7654321 --catagory 132 --request --recomanded --doubleupload
    ```
 
-7. For help:
+8. For help:
 
    ```bash
    python upload.py -h

@@ -10,11 +10,11 @@
 
 - 🔍 **Auto Metadata Detection**
   - Fetches IMDb ID, TMDb ID, trailer link, poster, and more
-- ⚙️ **Automatically Torrent Creator**
+- ⚙️ **Automatically Torrent Createor**
   - Generates `.torrent` file with optimal settings
 - 📄 **Media Info Generator**
   - Extracts and formats technical details using MediaInfo
-- 🖼️ **Screenshot Generator**
+- 🖼️ **Automatically Screenshot Generate & Upload**
   - Captures screenshots and uploads them to your preferred image host
 - 🧾 **BBCode Description Generator**
   - Includes poster, screenshots, MediaInfo, IMDb/TMDb/YouTube links

@@ -16,7 +16,7 @@ from src.screens import Screens
 from src.uph import mdprint
 from src.descr import Description
 from src.tracker.BWT import BWTorrentUploader
-from srcsrc.version import version, author
+from src.version import version, author
 
 def main():
     console.rule("[bold magenta]🚀 BWT-Uploader [bold yellow]v{version} [bold green]- Created by [bold red]-={author}=-", style="bold cyan")

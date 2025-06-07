@@ -248,7 +248,7 @@ class BWTorrentUploader:
                     cookies[parts[5]] = parts[6]
         return cookies
 
-    def ask_bwt_name():
+    def ask_bwt_name(self):
         return Prompt.ask("[bold yellow]Enter BWT Name[/bold yellow]")
     
     def upload(self):
@@ -264,7 +264,7 @@ class BWTorrentUploader:
             if confirmation == 'y':
                 break
             else:
-                bwt_name = ask_bwt_name()
+                bwt_name = self.ask_bwt_name()
 
         data = {
             'name': bwt_name,

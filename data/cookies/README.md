@@ -15,6 +15,6 @@ To proceed with authentication or session-based access, please **save your Netsc
 1. Use a browser extension like **[Get cookies.txt](https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc)**.
 2. Visit the target website while logged in.
 3. Click the extension icon and export cookies.
-4. Save the file in this directory as `BWT.txt` or `YouTube.txt` accordingly.
+4. Save the file in this directory as `BWT.txt` and `YouTube.txt` accordingly.
 
-> Make sure the files are in the **Netscape HTTP Cookie File format**, otherwise they won't work.
+> ⚠️ Make sure the files are in the **Netscape HTTP Cookie File format**, otherwise they won't work.

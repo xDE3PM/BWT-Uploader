@@ -31,27 +31,13 @@
 
 ## 🧰 Requirements
 
-### 🐍 Python Modules
-
-Install all Python requirements using:
-
-```bash
-pip install -r data/requirements.txt
-```
-
 ### 🛠️ System Tools (Required)
-
-These must be installed and accessible from your system’s PATH:
-
-- [Python](https://www.python.org/downloads/) – version 3.8 or higher
-- [FFmpeg](https://ffmpeg.org/download.html) – for trailer handling and screenshots
-- [MediaInfo](https://mediaarea.net/en/MediaInfo) – for detailed media metadata
-
 
 You must have these tools installed and accessible from your system’s PATH:
 
-- [FFmpeg](https://ffmpeg.org/download.html) – for trailer handling and screenshots
-- [MediaInfo](https://mediaarea.net/en/MediaInfo) – for detailed media metadata
+- [Python](https://www.python.org/downloads/) – version 3.8 or higher
+- [FFmpeg](https://ffmpeg.org/download.html)
+- [MediaInfo](https://mediaarea.net/en/MediaInfo)
 
 ---
 

@@ -225,15 +225,20 @@ Use the following Category ID when using the `--catagory` or `-c` argument:
 
 ---
 
-## 🙌 Credits
+## 🙏 Credits
 
-- [IMDbPY](https://github.com/alberanid/imdbpy)
-- [TMDb API](https://www.themoviedb.org/)
+This project relies on the following amazing tools and libraries:
+
+- [ffmpeg-python](https://github.com/kkroening/ffmpeg-python)
+- [bencode.py](https://github.com/fuzeman/bencode.py)
+- [guessit](https://github.com/guessit-io/guessit)
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp)
-- [FFmpeg](https://ffmpeg.org/)
-- [MediaInfo](https://mediaarea.net/)
-- [Rich](https://github.com/Textualize/rich)
-
+- [cinemagoer (IMDbPY)](https://github.com/cinemagoer/cinemagoer)
+- [py3createtorrent](https://github.com/NoOne-hub/py3createtorrent)
+- [rich](https://github.com/Textualize/rich)
+- [pymediainfo](https://github.com/sbraz/pymediainfo)
+- [requests](https://github.com/psf/requests)
+  
 ---
 
 ## 🤝 Contributing

@@ -76,7 +76,7 @@ You must have these tools installed and accessible from your system’s PATH:
 
 6. Save as BWT.txt and YouTube.txt in the data/cookies directory.
 <details>
-<summary>Click for more details</summary>
+   <summary>Click for more details</summary>
 # Cookie Files Setup
 
 To proceed with authentication or session-based access, please **save your Netscape HTTP Cookies file in this directory**.

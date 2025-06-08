@@ -30,7 +30,7 @@ def main():
     file_info = FilePathInfo()
     meta = file_info.process()
     filename = meta["filename"]
-    console.print(f"\n[bold cyan]File Name:[/bold cyan] {filename}")
+    console.print(f"\n[bold cyan]File Name:[/bold cyan] {filename}\n")
     details = get_details()
     
     mdprint(details)

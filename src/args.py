@@ -44,8 +44,8 @@ class Args:
 
         meta = {
             "filepath": str(self.args.filepath),
-            "imdb_id": self.args.imdb,
-            "tmdb_id": self.args.tmdb,
+            "imdbID": self.args.imdb,
+            "tmdbID": self.args.tmdb,
             "request": self.args.request,
             "recomanded": self.args.recomanded,
             "doubleupload": self.args.doubleupload,

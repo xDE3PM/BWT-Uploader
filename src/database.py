@@ -145,7 +145,7 @@ def get_details():
 
     # IMDb ID and Details
     if not imdbID:
-        console.print("[bold yellow]\nFetching IMDb ID from filename...[/bold yellow]")
+        console.print("[bold yellow]Fetching IMDb ID from filename...[/bold yellow]")
         imdbID = search_imdb(filename, title, year, file_type)
         if not imdbID:
             imdbID = Prompt.ask("[bold red]IMDb ID not found. Please enter IMDb ID number[/bold red]")

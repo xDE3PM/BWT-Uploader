@@ -19,16 +19,15 @@ def mdprint(meta):
     console.print(f"[bold magenta]Genre:[/bold magenta] {genres}\n")
 
     # Category
-    category = imdb.get("type", "N/A")
-    if category == "movie":
-        result = "MOVIE"
-    elif category == "tv series":
-        result = "TV Series"
-    
-    console.print(f"[bold blue]Category:[/bold blue] {result}")
+    category = imdb.get("type", "N/A") 
+    console.print(f"[bold blue]Category:[/bold blue] {category}")
 
     # TMDB & IMDB
+    tmdb_rating = tmdb.get("rating", "N/A")
+    imdb_rating = imdb.get("rating", "N/A")
     tmdb_link = tmdb.get("tmdb_link", "N/A")
     imdb_link = imdb.get("link", "N/A")
+    console.print(f"\n[bold yellow]TMDb Link:[/bold yellow] [bold]{tmdb_rating}/10[/bold]")
+    console.print(f"[bold green]IMDb Link:[/bold green] [bold]{imdb_rating}/10[/bold]")
     console.print(f"\n[bold yellow]TMDb Link:[/bold yellow] {tmdb_link}")
     console.print(f"[bold green]IMDb Link:[/bold green] {imdb_link}\n")

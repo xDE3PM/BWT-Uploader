@@ -48,7 +48,7 @@ def get_imdb_details(imdbID):
         "plot": movie.get("plot", [""])[0],
         "poster": movie.get("full-size cover url", "N/A"),
         "link": f"https://www.imdb.com/title/{imdb_id}/",
-        "type": movie.get("kind", "Unknown")
+        "type": movie.get("kind", "N/A").upper() 
     }
 
 def search_tmdb(title, year, media_type, tmdb_api_key):

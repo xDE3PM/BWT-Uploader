@@ -46,6 +46,8 @@ def main():
     manager.generate_screenshots()
     manager.upload_images()
     movie_poster_url = details["tmdb"]["poster"] or details["imdb"]["poster"]
+    if not movie_poster_url:
+        movie_poster_url = Prompt.ask("[bold]Enter your poster URL:")
     description = Description()
     description.generate(movie_poster_url)
     bwtup = BWTorrentUploader()

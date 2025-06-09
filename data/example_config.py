@@ -16,12 +16,12 @@ config = {
 
     # API keys for each supported image host (only the one used will be required)
     "image_host_api_key": {
-        "Freeimage": "Freeimage_api_key",     # Required if image_host is "Freeimage"
-        "Imgbb": "Imgbb_api_key",             # Required if image_host is "Imgbb"
-        "Imageride": "Imageride_api_key",     # Required if image_host is "Imageride"
-        "Lookmyimg": "_api_key",              # Required if image_host is "Lookmyimg"
-        "Onlyimg": "Onlyimg_api_key",         # Required if image_host is "Onlyimg"
-        "PTScreen": "PTScreen_api_key"        # Required if image_host is "PTScreen"
+        "Freeimage": "freeimage_api_key",     # Required if image_host is "Freeimage"
+        "Imgbb": "imgbb_api_key",             # Required if image_host is "Imgbb"
+        "Imageride": "imageride_api_key",     # Required if image_host is "Imageride"
+        "Lookmyimg": "lookmyimg_api_key",              # Required if image_host is "Lookmyimg"
+        "Onlyimg": "onlyimg_api_key",         # Required if image_host is "Onlyimg"
+        "PTScreen": "ptscreen_api_key"        # Required if image_host is "PTScreen"
     }
 }
 

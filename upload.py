@@ -17,9 +17,12 @@ from src.uph import mdprint
 from src.descr import Description
 from src.tracker.BWT import BWTorrentUploader
 from src.version import version, author
+from src.checkupdate import VersionChecker
 
 def main():
     console.rule(f"[bold magenta]🚀 BWT-Uploader [bold yellow]v{version} [bold green]- Created by [bold red]-={author}=-", style="bold cyan")
+    checker = VersionChecker()
+    checker.check_for_updates()
     args = Args()
     meta_args = args.gmeta()
 

@@ -1,4 +1,4 @@
-import os, json
+import os, json, sys
 import requests
 import subprocess
 from guessit import guessit
@@ -92,8 +92,8 @@ def get_tmdb_details(tmdbID, media_type, tmdb_api_key):
             "genres": [g["name"] for g in content.get("genres", [])],
             "rating": content.get("vote_average", "N/A"),
             "overview": content.get("overview", "No overview available."),
-            "poster": f"https://image.tmdb.org/t/p/original{content.get('poster_path')}" if content.get("poster_path") else None,
-            "backdrop": f"https://image.tmdb.org/t/p/original{content.get('backdrop_path')}" if content.get("backdrop_path") else None,
+            "poster": f"https://image.tmdb.org/t/p/w780{content.get('poster_path')}" if content.get("poster_path") else None,
+            "backdrop": f"https://image.tmdb.org/t/p/w500{content.get('backdrop_path')}" if content.get("backdrop_path") else None,
             "tmdb_link": f"https://www.themoviedb.org/{media_type}/{tmdbID}/",
             "more_poster": f"https://www.themoviedb.org/{media_type}/{tmdbID}/images/posters",
             "more_backdrop": f"https://www.themoviedb.org/{media_type}/{tmdbID}/images/backdrops"
@@ -103,10 +103,13 @@ def get_tmdb_details(tmdbID, media_type, tmdb_api_key):
 
 def get_youtube_trailer(title, year, media_type):
     query = f"{title} {year} {media_type} official trailer"
+    yt_cookie_path = "data/cookies/YouTube.txt"
+    if not os.path.exists(yt_cookie_path):
+        sys.exit("Error: YouTube Cookie file does not exist at the specified path.")
     cmd = [
         "yt-dlp", f"ytsearch5:{query}",
         "--print", "%(id)s|%(title)s",
-        "--cookies", "data/cookies/YouTube.txt"
+        "--cookies", f"{yt_cookie_path}"
     ]
     try:
         output = subprocess.check_output(cmd, text=True).strip().split("\n")[0]
@@ -136,6 +139,9 @@ def get_details():
     imdbID = fmeta.get("imdbID", "")
     tmdbID = fmeta.get("tmdbID", "") 
     filename = fmeta.get("filename", "")
+    skip_youtube = fmeta.get("skip_youtube", False)
+    skip_tmdb = fmeta.get("skip_tmdb", False)
+    skip_imdb_tmdb = fmeta.get("skip_imdb_tmdb", False)
     
     info = guessit(filename)
     title = info.get("title")
@@ -144,31 +150,48 @@ def get_details():
     media_type = "movie" if file_type == "movie" else "tv"
 
     # IMDb ID and Details
-    if not imdbID:
+    if not imdbID and skip_imdb_tmdb is False:
         console.print("[bold yellow]Fetching IMDb ID from filename...[/bold yellow]")
         imdbID = search_imdb(filename, title, year, file_type)
         if not imdbID:
             imdbID = Prompt.ask("[bold red]IMDb ID not found. Please enter IMDb ID number[/bold red]")
-    
-    console.print("[bold yellow]Fetching IMDb Metadata...[/bold yellow]")
-    imdb_details = get_imdb_details(imdbID)
+    if imdbID:
+        console.print("[bold yellow]Fetching IMDb Metadata...[/bold yellow]")
+        imdb_details = get_imdb_details(imdbID)
+    else:
+        imdb_details = {}
 
     # TMDb ID and Details
-    if not tmdbID:
+    if not tmdbID and skip_tmdb is False and skip_imdb_tmdb is False:
+        if not tmdb_api_key:
+            console.print("[bold red]Error: TMDb API key is missing in the configuration.[/bold red]")
+            console.print("[red]Exiting...[/red]")
+            sys.exit(0)
+            
         console.print("[bold green]Fetching TMDB ID...[/bold green]")
         tmdbID = get_tmdb_id(imdbID, tmdb_api_key)
         if not tmdbID:
             console.print("[bold green]Fetching TMDb ID from filename...[/bold green]")
             tmdbID = search_tmdb(title, year, media_type, tmdb_api_key)
             if not tmdbID:
-                tmdbID = Prompt.ask("[bold red]TMDb ID not found. Please enter TMDb ID number[/bold red]")
-    console.print("[bold green]Fetching TMDb Metadata...[/bold green]")
-    tmdb_details = get_tmdb_details(tmdbID, media_type, tmdb_api_key)
+                tmdbID = Prompt.ask("[bold red]TMDb ID not found. Please enter TMDb ID number[/bold red]")    
+    if tmdbID:
+        console.print("[bold green]Fetching TMDb Metadata...[/bold green]")
+        tmdb_details = get_tmdb_details(tmdbID, media_type, tmdb_api_key)
+    else:
+        tmdb_details = {}
 
-    # Trailer (TMDb first, fallback to YouTube)
-    console.print("[bold magenta]Fetching YouTube Trailer...[/bold magenta]")
-    trailer_info = get_tmdb_trailer(tmdbID, title, year, media_type, tmdb_api_key)
-    
+    # YouTube Trailer
+    skip_youtube = fmeta.get("skip_youtube", False)
+    if skip_youtube is False:
+        console.print("[bold magenta]Fetching YouTube Trailer...[/bold magenta]")
+        trailer_info = get_tmdb_trailer(tmdbID, title, year, media_type, tmdb_api_key)
+    else: 
+        trailer_info = {
+                "title": None,
+                "url": None,
+        }
+
     full_data = {
         "imdb": imdb_details,
         "tmdb": tmdb_details,

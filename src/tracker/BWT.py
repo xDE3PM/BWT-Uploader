@@ -150,7 +150,7 @@ class BWTorrentUploader:
         recomanded = metadata.get("recomanded")
 
         with open(bbcode_path, 'r', encoding='utf-8') as f:
-            description = f.read()
+            description = f.read().strip()
 
         return {
             "imdb_link": imdb_link,
@@ -238,6 +238,10 @@ class BWTorrentUploader:
 
     def load_cookies(self):
         cookie_path = "data/cookies/BWT.txt"
+        if not os.path.exists(cookie_path):
+            console.print("Error: BWT.txt Cookie file does not exist at the specified path.", style="bold red")
+            console.print("[red]Exiting...[/red]")
+            sys.exit(0)
         cookies = {}
         with open(cookie_path, 'r', encoding='utf-8') as f:
             for line in f:

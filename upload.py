@@ -30,14 +30,11 @@ def main():
     file_info = FilePathInfo()
     meta = file_info.process()
     filename = meta["filename"]
+    skip_tmdb = meta.get("skip_tmdb", False)
+    skip_imdb_tmdb = meta.get("skip_imdb_tmdb", False)
     console.print(f"\n[bold cyan]File Name:[/bold cyan] {filename}\n")
     details = get_details()
-    
     mdprint(details)
-    confirm = Prompt.ask("[bold]Is this Database information correct?", choices=["y", "N"], case_sensitive=False) 
-    if confirm.lower() != "y":
-        console.print("[red]Exiting...[/red]")
-        sys.exit(0)
     torrent = Torrent()
     torrent.create()
     generator = MediaInfoGenerator()
@@ -45,9 +42,15 @@ def main():
     manager = Screens()
     manager.generate_screenshots()
     manager.upload_images()
-    movie_poster_url = details["tmdb"]["poster"] or details["imdb"]["poster"]
-    if not movie_poster_url:
+    
+    if skip_imdb_tmdb is False:
+         if skip_tmdb is False:
+             movie_poster_url = details["tmdb"]["poster"] 
+         else:
+             movie_poster_url = details["imdb"]["poster"]
+    else:
         movie_poster_url = Prompt.ask("[bold]Enter your poster URL:")
+        
     description = Description()
     description.generate(movie_poster_url)
     bwtup = BWTorrentUploader()

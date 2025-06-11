@@ -1,3 +1,4 @@
+import sys
 from src.ia import console
 from rich.prompt import Prompt
 

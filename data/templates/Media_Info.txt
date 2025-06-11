@@ -36,7 +36,7 @@ Page_Middle
 Page_End
 General_Begin
 General_End
-Video_Begin ;\n★ Video Track ★
+Video_Begin;\n★ Video Track ★
 Video_Middle
 Video_End
 Audio_Begin;\n★ Audio Track ★

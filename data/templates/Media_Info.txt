@@ -6,9 +6,8 @@ Duration..............: %Duration/String2% (%Duration/String3%)
 Overall Bitrate.......: %OverallBitRate/String% %OverallBitRate_Mode/String%
 File Size.............: %FileSize/String4%"
 
-Video;"
-★ Video Track ★
-$if(%Title%,Title ................: %Title%,)
+Video;" $if(%Title%,
+Title ................: %Title%,)
 Format................: %Format% (%BitDepth/String%)
 Format Profile........: %Format_Profile%
 Resolution............: %Width% x %Height%
@@ -37,7 +36,7 @@ Page_Middle
 Page_End
 General_Begin
 General_End
-Video_Begin
+Video_Begin ;\n★ Video Track ★
 Video_Middle
 Video_End
 Audio_Begin;\n★ Audio Track ★

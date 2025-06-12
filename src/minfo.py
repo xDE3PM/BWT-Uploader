@@ -1,4 +1,5 @@
 import os
+import re
 from pymediainfo import MediaInfo
 from src.filepath import FilePathInfo
 from src.ia import console
@@ -37,7 +38,7 @@ class MediaInfoGenerator:
 
     def _save_media_info(self, filepath, media_info):
         lines = media_info.splitlines()
-        with open(filepath, "w", encoding="utf-8") as f:
+        with open(filepath, "w", encoding="utf-8", newline='') as f:
             f.write(f"{self.video_file_name}\n\n")    
             for line in lines:
                 if line.startswith("Complete name"):
@@ -46,7 +47,5 @@ class MediaInfoGenerator:
                     f.write(line + "\n")
 
     def _save_custom_media_info(self, filepath, custom_media_info):
-        with open(filepath, "w", encoding="utf-8") as output_file:
+        with open(filepath, "w", encoding="utf-8", newline='\r\n' if os.name == 'nt' else '\n') as output_file:
             output_file.write(custom_media_info)
-
-    

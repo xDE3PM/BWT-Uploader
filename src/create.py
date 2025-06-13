@@ -126,7 +126,7 @@ class Torrent:
             with open(self.output_torrent, "rb") as f:
                 torrent_data = bencode.bdecode(f.read())
 
-            torrent_data["comment"] = "--=DE3PM=-"
+            torrent_data["comment"] = "-=DE3PM=-"
             torrent_data["created by"] = "-=DE3PM=-"
             torrent_data["info"]["source"] = "-=DE3PM=-"
             torrent_data["source"] = "-=DE3PM=-"

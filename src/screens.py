@@ -32,7 +32,8 @@ class Screens:
             duration = float(probe['format']['duration'])
         except ffmpeg.Error as e:
             console.print(f"[bold red] ✖ Error probing video: {e.stderr.decode()}")
-            return
+            console.print("[red]Exiting...[/red]")
+            sys.exit(0)
 
         adjusted_duration = max(60, math.floor(duration) - 500)
         timestamps = [adjusted_duration / num_screenshots * i for i in range(1, num_screenshots + 1)]
@@ -51,6 +52,8 @@ class Screens:
                 generated_count += 1
             except ffmpeg.Error as e:
                 console.print(f"[bold red] ✖ Error at {timestamp}s: {e.stderr.decode()}")
+                console.print("[red]Exiting...[/red]")
+                sys.exit(0)
 
         if generated_count > 0:
             console.print("[bold green] ✔ Screenshots generated successfully.")
@@ -72,11 +75,13 @@ class Screens:
 
         if not image_host or image_host not in API_URLS:
             console.print(f"[bold red] ✖ Invalid or unsupported image host: {image_host}")
-            return
+            console.print("[red]Exiting...[/red]")
+            sys.exit(0)
 
         if not image_host_api_key:
             console.print(f"[bold red] ✖ API key missing for image host: {image_host}")
-            return
+            console.print("[red]Exiting...[/red]")
+            sys.exit(0)
 
         api_url = API_URLS[image_host]
 
@@ -93,7 +98,8 @@ class Screens:
 
         if not files:
             console.print("[bold red] ✖ No screenshots found to upload.")
-            return
+            console.print("[red]Exiting...[/red]")
+            sys.exit(0)
 
         console.print("[bold yellow] ➥ Uploading Screenshots...")
         upload_results = []
@@ -112,18 +118,21 @@ class Screens:
                 response.raise_for_status()
             except requests.RequestException as e:
                 console.print(f"[bold red] ✖ Network error uploading {img}: {str(e)}")
-                continue
+                console.print("[red]Exiting...[/red]")
+                sys.exit(0)
 
             try:
                 img_response = response.json()
             except json.JSONDecodeError:
                 console.print(f"[bold red] ✖ JSON decode error for {img}")
-                continue
+                console.print("[red]Exiting...[/red]")
+                sys.exit(0)
 
             if not img_response.get("success", True):
                 error_msg = img_response.get("error", {}).get("message", "Unknown error")
                 console.print(f"[bold red] ✖ Upload failed for {img}: {error_msg}")
-                continue
+                console.print("[red]Exiting...[/red]")
+                sys.exit(0)
 
             upload_results.append({img: img_response})
 

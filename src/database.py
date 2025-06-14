@@ -15,7 +15,7 @@ def search_imdb(filename, name, year, file_type):
     """
     BASE_URL = "https://rest.imdbapi.dev/v2"
     url = f"{BASE_URL}/search/titles"
-    params = {"query": name year}
+    params = {"query": f"{name} {year}"}
     response = requests.get(url, params=params)
     response.raise_for_status()
     results = response.json().get("titles", [])

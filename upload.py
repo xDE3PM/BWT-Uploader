@@ -28,7 +28,7 @@ def main():
 
     if not meta_args or not meta_args.get("filepath"):
         console.print("[bold red]Error: Filepath is required.[/bold red]")
-        sys.exit(1)
+        error_exit()
 
     file_info = FilePathInfo()
     meta = file_info.process()

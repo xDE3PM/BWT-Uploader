@@ -5,6 +5,7 @@ from data.config import BBCODE_TEMPLATE
 from src.filepath import FilePathInfo
 from src.ia import console
 from rich.prompt import Prompt
+from src.miextractor import MediaInfoExtractor
 
 class Description:
     def __init__(self):
@@ -23,41 +24,18 @@ class Description:
         with open(self.screenshot_links, 'r', encoding="utf-8") as f:
             screenshot_bbcode = f.read().strip()
 
-        with open(self.media_info_path, "r", encoding="utf-8") as f:
-            mediainfo = f.read().strip()
-
-        lines = mediainfo.splitlines()
-        cleaned_lines = []
-        for i in range(len(lines)):
-            if i + 1 < len(lines) and '★ Subtitle ★' in lines[i + 1]:
-                continue
-            cleaned_lines.append(lines[i])
-        mediainfo = '\n'.join(cleaned_lines)
-
-        mediainfo = mediainfo.replace(
-            '★ General ★',
-            '[quote]\n[b][color=green]★ General ★[/color][/b]\n[font=Courier New]'
-        )
-        mediainfo = mediainfo.replace(
-            '★ Video Track ★',
-            '[/font]\n\n[b][color=blue]★ Video Track ★[/color][/b]\n[font=Courier New]'
-        )
-        mediainfo = mediainfo.replace(
-            '★ Audio Track ★',
-            '[/font]\n\n[b][color=orange]★ Audio Track ★[/color][/b]\n[font=Courier New]'
-        )
-        mediainfo = mediainfo.replace(
-            '★ Subtitle ★',
-            '[/font]\n\n[b][color=teal]★ Subtitle ★[/color][/b]\n[font=Courier New]'
-        )
-        mediainfo += '\n[/font]\n[/quote]'
-
+        mi = MediaInfoExtractor()
+        general, video, audio, subtitle, chapters = mi.get_custom_mediainfo()
         file_name = self.filename_noext
 
         new_content = textwrap.dedent(BBCODE_TEMPLATE).format(
             movie_poster_url=movie_poster_url,
             file_name=file_name,
-            mediainfo=mediainfo,
+            general_info=general,
+            video_info=video,
+            audio_info=audio,
+            text_info=subtitle,
+            chapters_info=chapters,
             screenshot_bbcode=screenshot_bbcode
         )
 

@@ -12,32 +12,6 @@ from src.filepath import FilePathInfo
 from src.exit import error_exit
 
 
-def mkbrr_windows(dest=None):
-    if platform.system() != "Windows":
-        return None
-
-    url = "https://github.com/autobrr/mkbrr/releases/download/v1.12.1/mkbrr_1.12.1_windows_x86_64.zip"
-    work_dir = os.getcwd()
-    folder = os.path.join(work_dir, "mkbrr_extracted")
-    exe = "mkbrr.exe"
-
-    try:
-        console.print("[bold yellow] ➥ Downloading mkbrr for Windows...")
-        r = requests.get(url)
-        r.raise_for_status()
-        with zipfile.ZipFile(io.BytesIO(r.content)) as z:
-            z.extractall(folder)
-        src, dest = os.path.join(folder, exe), dest or work_dir
-        os.makedirs(dest, exist_ok=True)
-        dest_path = os.path.join(dest, exe)
-        shutil.copy2(src, dest_path)
-        shutil.rmtree(folder)
-        console.print(f"[bold green] ✔ mkbrr installed to: {dest_path}")
-        return dest_path
-    except Exception as e:
-        console.print(f"[bold red] ✘ Failed to install mkbrr: {e}")
-        return None
-
 class Torrent:
     def __init__(self):
         self.file_info = FilePathInfo()
@@ -56,15 +30,40 @@ class Torrent:
         if not shutil.which("mkbrr") and not shutil.which("py3createtorrent"):
             console.print("[bold red] ✘ Neither mkbrr nor py3createtorrent is installed.\n")
             return
-        
+
         if not shutil.which("mkbrr"):
             if platform.system() == "Windows":
-                mkbrr_windows()
+                self._mkbrr_windows()
             if not shutil.which("mkbrr"):
                 console.print("[bold red] ✘ mkbrr is not installed.\n")
                 self.create_with_py3()
             else:
                 self.create_with_mkbrr()
+        else:
+            self.create_with_mkbrr()
+
+    def _mkbrr_windows(self, dest=None):
+        url = "https://github.com/autobrr/mkbrr/releases/download/v1.12.1/mkbrr_1.12.1_windows_x86_64.zip"
+        work_dir = os.getcwd()
+        folder = os.path.join(work_dir, "mkbrr_extracted")
+        exe = "mkbrr.exe"
+
+        try:
+            console.print("[bold yellow] ➥ Downloading mkbrr for Windows...")
+            r = requests.get(url)
+            r.raise_for_status()
+            with zipfile.ZipFile(io.BytesIO(r.content)) as z:
+                z.extractall(folder)
+            src, dest = os.path.join(folder, exe), dest or work_dir
+            os.makedirs(dest, exist_ok=True)
+            dest_path = os.path.join(dest, exe)
+            shutil.copy2(src, dest_path)
+            shutil.rmtree(folder)
+            console.print(f"[bold green] ✔ mkbrr installed to: {dest_path}")
+            return dest_path
+        except Exception as e:
+            console.print(f"[bold red] ✘ Failed to install mkbrr: {e}")
+            return None
 
     def piece_size(self):
         return {

@@ -121,7 +121,7 @@ class MediaInfoExtractor:
                 audio_info.append(f"Channels..............: {g(t, 'channel_s')} channels ({g(t, 'channel_positions')})")
                 if i < len(audios) - 1:
                     audio_info.append("")
-        audio_info = '\n'.join(audio_info) if audio_info else '[b]Audio Not Available.[/b]''
+        audio_info = '\n'.join(audio_info) if audio_info else '[b]Audio Not Available.[/b]'
 
         # Subtitles
         text_info = []

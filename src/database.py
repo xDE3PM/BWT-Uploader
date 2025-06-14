@@ -7,6 +7,7 @@ from src.metafile import MetaPath
 from src.filepath import FilePathInfo
 from src.ia import console
 from rich.prompt import Prompt
+from src.exit import error_exit
 
 def search_imdb(filename, name, year, file_type):
     """
@@ -162,8 +163,7 @@ def get_details():
     if not tmdbID and skip_tmdb is False and skip_imdb_tmdb is False:
         if not tmdb_api_key:
             console.print("[bold red]Error: TMDb API key is missing in the configuration.[/bold red]")
-            console.print("[red]Exiting...[/red]")
-            sys.exit(0)
+            error_exit()
             
         console.print("[bold green]Fetching TMDB ID...[/bold green]")
         tmdbID = get_tmdb_id(imdbID, tmdb_api_key)

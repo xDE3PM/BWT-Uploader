@@ -2,53 +2,63 @@ import os, json, sys
 import requests
 import subprocess
 from guessit import guessit
-from src.ia import ia
 from data.config import config
 from src.metafile import MetaPath
 from src.filepath import FilePathInfo
 from src.ia import console
 from rich.prompt import Prompt
 
-
 def search_imdb(filename, name, year, file_type):
-    # Search
-    movies = ia.search_movie(name)
+    """
+    Searches IMDb and returns the best matching IMDb ID based on name, year, and type.
+    """
+    BASE_URL = "https://rest.imdbapi.dev/v2"
+    url = f"{BASE_URL}/search/titles"
+    params = {"query": name year}
+    response = requests.get(url, params=params)
+    response.raise_for_status()
+    results = response.json().get("titles", [])
+
     best_match = None
-    for m in movies:
-        movie_details = ia.get_movie(m.movieID)
-        imdb_type = movie_details.get('kind', 'Unknown')
+
+    for movie in results:
+        imdb_type = movie.get("type")
+        start_year = movie.get("start_year")
+
         if file_type == "movie" and imdb_type == "movie":
-            if year and movie_details.get('year') == year:
-                best_match = movie_details
+            if year and start_year == year:
+                best_match = movie
                 break
-        elif file_type == "episode" and imdb_type in ["tv series", "tv mini series"]:
-            if year and movie_details.get('year') == year:
-                best_match = movie_details
-                break  
+        elif file_type == "episode" and imdb_type in ["tvSeries", "tvMiniSeries"]:
+            if year and start_year == year:
+                best_match = movie
+                break
 
-    # Fast one
-    if not best_match:
-        best_match = ia.get_movie(movies[0].movieID) if movies else None
+    if not best_match and results:
+        best_match = results[0]
 
-    # Match one
-    if best_match:
-        return best_match.movieID
-    
-    return None
+    return best_match.get("id") if best_match else None
 
 def get_imdb_details(imdbID):
-    movie = ia.get_movie(imdbID)
-    imdb_id = f"tt{imdbID}"
+    """
+    Fetches full IMDb details by IMDb ID.
+    """
+    BASE_URL = "https://rest.imdbapi.dev/v2"
+    url = f"{BASE_URL}/titles/{imdbID}"
+    response = requests.get(url)
+    response.raise_for_status()
+    movie = response.json()
+
     return {
-        "id": imdb_id,
-        "title": movie.get("title", "N/A"),
-        "year": movie.get("year", "N/A"),
+        "id": movie.get("id", imdbID),
+        "title": movie.get("primary_title", "N/A"),
+        "year": movie.get("start_year", "N/A"),
         "genres": movie.get("genres", []),
-        "rating": movie.get("rating", "N/A"),
-        "plot": movie.get("plot", [""])[0],
-        "poster": movie.get("full-size cover url", "N/A"),
-        "link": f"https://www.imdb.com/title/{imdb_id}/",
-        "type": movie.get("kind", "N/A").upper() 
+        "rating": movie.get("rating", {}).get("aggregate_rating", "N/A"),
+        "plot": movie.get("plot", "N/A"),
+        "poster": movie.get("primary_image", {}).get("url", "N/A"),
+        "link": f"https://www.imdb.com/title/{imdbID}/",
+        "type": movie.get("type", "N/A").upper()
     }
 
 def search_tmdb(title, year, media_type, tmdb_api_key):
@@ -101,23 +111,6 @@ def get_tmdb_details(tmdbID, media_type, tmdb_api_key):
     else:
         return {}
 
-def get_youtube_trailer(title, year, media_type):
-    query = f"{title} {year} {media_type} official trailer"
-    yt_cookie_path = "data/cookies/YouTube.txt"
-    if not os.path.exists(yt_cookie_path):
-        sys.exit("Error: YouTube Cookie file does not exist at the specified path.")
-    cmd = [
-        "yt-dlp", f"ytsearch5:{query}",
-        "--print", "%(id)s|%(title)s",
-        "--cookies", f"{yt_cookie_path}"
-    ]
-    try:
-        output = subprocess.check_output(cmd, text=True).strip().split("\n")[0]
-        video_id, video_title = output.split("|", 1)
-        return {"title": video_title, "url": f"https://www.youtube.com/watch?v={video_id}"}
-    except subprocess.CalledProcessError:
-        return {"title": None, "url": None}
-
 def get_tmdb_trailer(tmdbID, title, year, media_type, tmdb_api_key):
     url = f"https://api.themoviedb.org/3/{media_type}/{tmdbID}/videos"
     response = requests.get(url, params={"api_key": tmdb_api_key}).json()
@@ -129,7 +122,11 @@ def get_tmdb_trailer(tmdbID, title, year, media_type, tmdb_api_key):
                 "title": video.get("name"),
                 "url": f"https://www.youtube.com/watch?v={video.get('key')}"
             }
-    return get_youtube_trailer(title, year, media_type)
+    return {
+        "title": None,
+        "url": None
+    }
+
 
 def get_details():
     file_info = FilePathInfo()

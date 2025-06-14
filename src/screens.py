@@ -33,8 +33,7 @@ class Screens:
             duration = float(probe['format']['duration'])
         except ffmpeg.Error as e:
             console.print(f"[bold red] ✖ Error probing video: {e.stderr.decode()}")
-            console.print("[red] Exiting...[/red]")
-            sys.exit(0)
+            error_exit()
 
         adjusted_duration = max(60, math.floor(duration) - 500)
         timestamps = [adjusted_duration / num_screenshots * i for i in range(1, num_screenshots + 1)]

@@ -14,6 +14,7 @@ from src.create import Torrent
 from src.miextractor import MediaInfoExtractor
 from src.screens import Screens
 from src.uph import mdprint
+from src.exit import error_exit
 from src.descr import Description
 from src.tracker.BWT import BWTorrentUploader
 from src.version import version, author

@@ -104,7 +104,7 @@ class MediaInfoExtractor:
                 video_info.append(f"Color Primaries.......: {g(video, 'color_primaries')}")
             if get_list(video, 'other_writing_library', 0):
                 video_info.append(f"Encoding Library......: {get_list(video, 'other_writing_library', 0)}")
-        video_info = '\n'.join(video_info) if video_info else '[b]Video Not Available.[/b]''
+        video_info = '\n'.join(video_info) if video_info else '[b]Video Not Available.[/b]'
 
         # Audio
         audio_info = []

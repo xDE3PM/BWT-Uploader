@@ -7,6 +7,7 @@ from rich.table import Table
 from rich.prompt import IntPrompt, Prompt
 from src.metafile import MetaPath
 from src.filepath import FilePathInfo
+from src.exit import error_exit
 
 CATGROUPS = {
     1: ("Bollywood", [
@@ -240,8 +241,7 @@ class BWTorrentUploader:
         cookie_path = "data/cookies/BWT.txt"
         if not os.path.exists(cookie_path):
             console.print("Error: BWT.txt Cookie file does not exist at the specified path.", style="bold red")
-            console.print("[red]Exiting...[/red]")
-            sys.exit(0)
+            error_exit()
         cookies = {}
         with open(cookie_path, 'r', encoding='utf-8') as f:
             for line in f:
@@ -297,8 +297,7 @@ class BWTorrentUploader:
         print()
         confirm = Prompt.ask("[bold]Continue to Upload This?", choices=["y", "N"], case_sensitive=False) 
         if confirm.lower() != "y":
-            console.print("[red]Exiting...[/red]")
-            sys.exit(0)
+            error_exit()
             
         with open(torrent_path, 'rb') as torrent_file:
             files = {'file': torrent_file}

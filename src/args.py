@@ -45,12 +45,12 @@ class Args:
             help="TMDb ID Number for the content (e.g., 123456)"
         )
         self.parser.add_argument(
-            "--no-tmdb", "-nt",
+            "--no-tmdb", "-NT",
             action="store_true",
             help="Skip fetching TMDb metadata"
        )
         self.parser.add_argument(
-            "--no-imdb-tmdb", "-nit",
+            "--no-imdb-tmdb", "-NIT",
             action="store_true",
             help="Skip fetching IMDb and TMDb metadata"
         )
@@ -65,7 +65,7 @@ class Args:
             help="Mark torrent as a recommended upload"
         )
         self.parser.add_argument(
-            "--no-youtube", "-noyt",
+            "--no-youtube", "-NY",
             action="store_true",
             help="Skip fetching a YouTube trailer"
         )
@@ -93,7 +93,6 @@ class Args:
             self.parser.print_help(sys.stderr)
             sys.exit(1, "\nError: filepath is required\n")
         
-        # Optional: Validate filepath existence
         if not Path(self.args.filepath).exists():
             self.parser.print_help(sys.stderr)
             sys.exit(1, f"\nError: filepath '{self.args.filepath}' does not exist\n")

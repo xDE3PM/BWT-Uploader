@@ -8,6 +8,7 @@ import ffmpeg
 from src.filepath import FilePathInfo
 from data.config import config
 from src.ia import console
+from src.exit import error_exit
 
 
 class Screens:
@@ -52,8 +53,7 @@ class Screens:
                 generated_count += 1
             except ffmpeg.Error as e:
                 console.print(f"[bold red] ✖ Error at {timestamp}s: {e.stderr.decode()}")
-                console.print("[red] Exiting...[/red]")
-                sys.exit(0)
+                error_exit()
 
         if generated_count > 0:
             console.print("[bold green] ✔ Screenshots generated successfully.")
@@ -75,13 +75,11 @@ class Screens:
 
         if not image_host or image_host not in API_URLS:
             console.print(f"[bold red] ✖ Invalid or unsupported image host: {image_host}")
-            console.print("[red] Exiting...[/red]")
-            sys.exit(0)
+            error_exit()
 
         if not image_host_api_key:
             console.print(f"[bold red] ✖ API key missing for image host: {image_host}")
-            console.print("[red] Exiting...[/red]")
-            sys.exit(0)
+            error_exit()
 
         api_url = API_URLS[image_host]
 
@@ -98,15 +96,13 @@ class Screens:
 
         if not files:
             console.print("[bold red] ✖ No screenshots found to upload.")
-            console.print("[red] Exiting...[/red]")
-            sys.exit(0)
+            error_exit()
 
         console.print("[bold yellow] ➥ Uploading Screenshots...")
         upload_results = []
         bbc_full, bbc_medium, bbc_thumb = [], [], []
 
         for img in files:
-            console.print(f"[cyan] ↻ Uploading: {img}")
             output_path = os.path.join(folder, img)
             with open(output_path, "rb") as file:
                 img_base64 = base64.b64encode(file.read()).decode('utf-8')
@@ -118,22 +114,19 @@ class Screens:
                 response.raise_for_status()
             except requests.RequestException as e:
                 console.print(f"[bold red] ✖ Network error uploading {img}: {str(e)}")
-                console.print("[red] Exiting...[/red]")
-                sys.exit(0)
+                error_exit()
 
             try:
                 img_response = response.json()
             except json.JSONDecodeError:
                 console.print(f"[bold red] ✖ JSON decode error for {img}")
-                console.print("[red] Exiting...[/red]")
-                sys.exit(0)
+                error_exit()
 
             if not img_response.get("success", True):
                 error_msg = img_response.get("error", {}).get("message", "Unknown error")
                 console.print(f"[bold red] ✖ Upload failed for {img}: {error_msg}")
-                console.print("[red] Exiting...[/red]")
-                sys.exit(0)
-
+                error_exit()
+                
             upload_results.append({img: img_response})
 
             url_full = img_response.get('data', {}).get('url', '')

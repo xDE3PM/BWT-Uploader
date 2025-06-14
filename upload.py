@@ -11,7 +11,7 @@ from src.args import Args
 from src.filepath import FilePathInfo
 from src.database import get_details
 from src.create import Torrent
-from src.minfo import MediaInfoGenerator
+from src.miextractor import MediaInfoExtractor
 from src.screens import Screens
 from src.uph import mdprint
 from src.descr import Description
@@ -40,8 +40,8 @@ def main():
     mdprint(details)
     torrent = Torrent()
     torrent.create()
-    generator = MediaInfoGenerator()
-    generator.generate_media_info()
+    mi = MediaInfoExtractor()
+    mi.process()
     manager = Screens()
     manager.generate_screenshots()
     manager.upload_images()

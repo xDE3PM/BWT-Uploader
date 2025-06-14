@@ -44,7 +44,32 @@ BBCODE_TEMPLATE = """
 
 †*****†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****††*****†*****†*****†*****†
 
-{mediainfo}
+[quote]
+[b][color=green]★ General ★[/color][/b]
+[font=Courier New]
+{general_info}
+[/font]
+
+[b][color=blue]★ Video Track ★[/color][/b]
+[font=Courier New]
+{video_info}
+[/font]
+
+[b][color=orange]★ Audio Track ★[/color][/b]
+[font=Courier New]
+{audio_info}
+[/font]
+
+[b][color=teal]★ Subtitle ★[/color][/b]
+[font=Courier New]
+{text_info}
+[/font]
+
+[b][color=Red]★ Chapters ★[/color]
+[font=Courier New]
+{chapters_info}
+[/font]
+[/quote]
 
 †*****†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****††*****†*****†*****†*****†
 

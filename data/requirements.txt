@@ -1,7 +1,6 @@
 ffmpeg-python
 bencode.py
 guessit
-yt-dlp
 cinemagoer
 py3createtorrent
 rich

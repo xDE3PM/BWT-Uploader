@@ -75,12 +75,12 @@ class Screens:
 
         if not image_host or image_host not in API_URLS:
             console.print(f"[bold red] ✖ Invalid or unsupported image host: {image_host}")
-            console.print("[red]Exiting...[/red]")
+            console.print("[red] Exiting...[/red]")
             sys.exit(0)
 
         if not image_host_api_key:
             console.print(f"[bold red] ✖ API key missing for image host: {image_host}")
-            console.print("[red]Exiting...[/red]")
+            console.print("[red] Exiting...[/red]")
             sys.exit(0)
 
         api_url = API_URLS[image_host]

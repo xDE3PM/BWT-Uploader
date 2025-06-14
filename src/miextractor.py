@@ -78,7 +78,7 @@ class MediaInfoExtractor:
         get_list = self._get_list
 
         # General
-        general_info = ['\n★ General ★']
+        general_info = ['']
         general = next((t for t in data['tracks'] if t.get('track_type') == 'General'), None)
         if general:
             general_info.append(f"File Name.............: {g(general, 'file_name_extension')}")
@@ -89,7 +89,7 @@ class MediaInfoExtractor:
         general_info = '\n'.join(general_info)
 
         # Video
-        video_info = ['\n★ Video Track ★']
+        video_info = ['']
         video = next((t for t in data['tracks'] if t.get('track_type') == 'Video'), None)
         if video:
             if g(video, 'title'):
@@ -138,7 +138,6 @@ class MediaInfoExtractor:
         menu_info = []
         menu = next((t for t in data['tracks'] if t.get('track_type') == 'Menu'), None)
         if menu and any(k for k in menu if re.match(r'\d{2}_\d{2}_\d{5}', k)):
-            menu_info.append('\n★ Chapters ★')
             chapter_keys = sorted([k for k in menu if re.match(r'\d{2}_\d{2}_\d{5}', k)])
             for i, key in enumerate(chapter_keys, 1):
                 timestamp = key.replace('_', ':')[:8]

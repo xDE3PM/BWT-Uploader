@@ -32,7 +32,7 @@ class Screens:
             duration = float(probe['format']['duration'])
         except ffmpeg.Error as e:
             console.print(f"[bold red] ✖ Error probing video: {e.stderr.decode()}")
-            console.print("[red]Exiting...[/red]")
+            console.print("[red] Exiting...[/red]")
             sys.exit(0)
 
         adjusted_duration = max(60, math.floor(duration) - 500)
@@ -52,7 +52,7 @@ class Screens:
                 generated_count += 1
             except ffmpeg.Error as e:
                 console.print(f"[bold red] ✖ Error at {timestamp}s: {e.stderr.decode()}")
-                console.print("[red]Exiting...[/red]")
+                console.print("[red] Exiting...[/red]")
                 sys.exit(0)
 
         if generated_count > 0:
@@ -98,7 +98,7 @@ class Screens:
 
         if not files:
             console.print("[bold red] ✖ No screenshots found to upload.")
-            console.print("[red]Exiting...[/red]")
+            console.print("[red] Exiting...[/red]")
             sys.exit(0)
 
         console.print("[bold yellow] ➥ Uploading Screenshots...")
@@ -118,20 +118,20 @@ class Screens:
                 response.raise_for_status()
             except requests.RequestException as e:
                 console.print(f"[bold red] ✖ Network error uploading {img}: {str(e)}")
-                console.print("[red]Exiting...[/red]")
+                console.print("[red] Exiting...[/red]")
                 sys.exit(0)
 
             try:
                 img_response = response.json()
             except json.JSONDecodeError:
                 console.print(f"[bold red] ✖ JSON decode error for {img}")
-                console.print("[red]Exiting...[/red]")
+                console.print("[red] Exiting...[/red]")
                 sys.exit(0)
 
             if not img_response.get("success", True):
                 error_msg = img_response.get("error", {}).get("message", "Unknown error")
                 console.print(f"[bold red] ✖ Upload failed for {img}: {error_msg}")
-                console.print("[red]Exiting...[/red]")
+                console.print("[red] Exiting...[/red]")
                 sys.exit(0)
 
             upload_results.append({img: img_response})

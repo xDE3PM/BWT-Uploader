@@ -1,6 +1,7 @@
 import sys
 from src.ia import console
 from rich.prompt import Prompt
+from src.exit import error_exit
 
 def mdprint(meta):
     imdb = meta.get("imdb", {})
@@ -11,8 +12,7 @@ def mdprint(meta):
         console.print("[bold red]Skipping TMDb or IMDb Database Details.[/bold red]\n")
         confirm = Prompt.ask("[bold]Continue to Upload this?", choices=["y", "N"], case_sensitive=False)  
         if confirm.lower() != "y":
-            console.print("[red]Exiting...[/red]")
-            sys.exit(0)
+            error_exit()
         return
 
     console.print("\n[bold cyan]──────────────────── Database Info ────────────────────[/bold cyan]\n")
@@ -57,6 +57,5 @@ def mdprint(meta):
    
     confirm = Prompt.ask("[bold]Is this Database information correct?", choices=["y", "N"], case_sensitive=False) 
     if confirm.lower() != "y":
-        console.print("[red]Exiting...[/red]")
-        sys.exit(0)
+        error_exit()
 

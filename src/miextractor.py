@@ -78,7 +78,7 @@ class MediaInfoExtractor:
         get_list = self._get_list
 
         # General
-        general_info = ['']
+        general_info = []
         general = next((t for t in data['tracks'] if t.get('track_type') == 'General'), None)
         if general:
             general_info.append(f"File Name.............: {g(general, 'file_name_extension')}")
@@ -89,7 +89,7 @@ class MediaInfoExtractor:
         general_info = '\n'.join(general_info)
 
         # Video
-        video_info = ['']
+        video_info = []
         video = next((t for t in data['tracks'] if t.get('track_type') == 'Video'), None)
         if video:
             if g(video, 'title'):
@@ -110,7 +110,6 @@ class MediaInfoExtractor:
         audio_info = []
         audios = [t for t in data['tracks'] if t.get('track_type') == 'Audio']
         if audios:
-            audio_info.append('\n★ Audio Track ★')
             for i, t in enumerate(audios):
                 audio_info.append(f"Track {i+1:02d}:")
                 if g(t, 'title'):

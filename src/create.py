@@ -5,6 +5,7 @@ import subprocess
 import bencode
 from src.ia import console
 from src.filepath import FilePathInfo
+from src.exit import error_exit
 
 class Torrent:
     def __init__(self):
@@ -81,7 +82,7 @@ class Torrent:
             console.print("[bold green] ✔ Torrent created successfully with mkbrr.\n")
         else:
             console.print("[bold red] ✘ Failed to create torrent with mkbrr\n")
-            sys.exit(1)
+            error_exit()
 
     def create_with_py3(self):
         console.print("[bold yellow]\n ➥ Creating torrent file with py3createtorrent...")
@@ -119,7 +120,7 @@ class Torrent:
             console.print("[bold green] ✔ Torrent created successfully with py3createtorrent.\n")
         else:
             console.print("[bold red] ✘ Failed to create torrent with py3createtorrent.")
-            sys.exit(1)
+            error_exit()
 
     def modify_torrent(self):
         try:

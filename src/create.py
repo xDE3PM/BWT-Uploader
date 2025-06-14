@@ -113,7 +113,7 @@ class Torrent:
 
         if result.returncode == 0 and os.path.exists(self.output_torrent):
             self.modify_torrent()
-            console.print("[bold green] ✔ Torrent created successfully with mkbrr.\n")
+            console.print("\n[bold green] ✔ Torrent created successfully with mkbrr.\n")
         else:
             console.print("[bold red] ✘ Failed to create torrent with mkbrr\n")
             error_exit()
@@ -151,7 +151,7 @@ class Torrent:
 
         if result.returncode == 0 and os.path.exists(self.output_torrent):
             self.modify_torrent()
-            console.print("[bold green] ✔ Torrent created successfully with py3createtorrent.\n")
+            console.print("\n[bold green] ✔ Torrent created successfully with py3createtorrent.\n")
         else:
             console.print("[bold red] ✘ Failed to create torrent with py3createtorrent.")
             error_exit()

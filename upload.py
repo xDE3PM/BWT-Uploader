@@ -21,6 +21,7 @@ from src.version import version, author
 from src.checkupdate import VersionChecker
 
 def main():
+    console.print()
     console.rule(f"[bold magenta]🚀 BWT-Uploader [bold yellow]v{version} [bold green]- Created by [bold red]-={author}=-", style="bold cyan")
     checker = VersionChecker()
     checker.check_for_updates()

@@ -44,7 +44,7 @@ class Torrent:
         self.fmeta = self.file_info.process()
         self.output_torrent = self.fmeta.get('torrent_path')
         self.input_filepath = self.fmeta.get('filepath')
-        self.tracker = "https://bwtorrents.tv/announce.php
+        self.tracker = "https://bwtorrents.tv/announce.php"
         self.debug = self.fmeta.get('debug', False)
         self.piece_size_length = self.fmeta.get('piece_length', None)
 

@@ -146,7 +146,7 @@ To proceed with authentication or session-based access, please **save your Netsc
 
 ## 📁 Category ID Reference
 
-Use the following Category ID when using the `--catagory` or `-c` argument:
+Use the following Category ID when using the `--catagory` or `-c` option:
 
 <details>
 <summary><strong>Click to expand full category list</strong>strong></summary>
@@ -263,7 +263,7 @@ Use the following Category ID when using the `--catagory` or `-c` argument:
 
 ## 📁 Piece Size Length Info
 
-Use the following Piece Size Length when using the `--piece-length` or `-p` argument:
+Use the following Piece Size Length when using the `--piece-length` or `-p` option:
 
 <details>
 <summary>📏 <strong>Click to view Piece Size Length Info</strong></summary>

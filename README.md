@@ -41,7 +41,7 @@ You must have these tools installed and accessible from your system’s PATH:
 - [Python 3.9+](https://www.python.org/downloads/)
 - [FFmpeg](https://ffmpeg.org/download.html)
 - [MediaInfo](https://mediaarea.net/en/MediaInfo)
-- [mkbrr](https://mkbrr.com/installation)
+- [mkbrr](https://mkbrr.com/installation) (optional)
   
 ---
 
@@ -69,7 +69,7 @@ You must have these tools installed and accessible from your system’s PATH:
    - Python 3.9+
    - FFmpeg
    - MediaInfo
-   - mkbrr 
+   - mkbrr (optional)
 
 5. Copy and configure:
 
@@ -79,7 +79,7 @@ You must have these tools installed and accessible from your system’s PATH:
 
    Then edit `data/config.py` to fill in the required details like your TMDb API key, image host API key, etc.
 
-6. Save as `BWT.txt` and `YouTube.txt` in the `data/cookies` directory.
+6. Save as `BWT.txt` in the `data/cookies` directory.
 
 <details>
 <summary>Click for more details</summary>

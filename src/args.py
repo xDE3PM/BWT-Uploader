@@ -1,6 +1,7 @@
 import argparse
 import sys
 from pathlib import Path
+from src.version import version
 
 class ShortHelpFormatter(argparse.HelpFormatter):
     def __init__(self, *args, **kwargs):
@@ -33,7 +34,7 @@ class Args:
         self.parser.add_argument(
             "--version", "-v",
             action="version",
-            version="BWT-Uploader 1.0.0 Stable",
+            version=f"BWT-Uploader v{version}",
             help="Show program version and exit"
         )
         self.parser.add_argument(

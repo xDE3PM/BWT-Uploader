@@ -1,5 +1,5 @@
 # version.py
 
-version = "1.0.0-beta"
+version = "1.0.0"
 author = "DE3PM"
 repo = "https://github.com/xDE3PM/BWT-Uploader"

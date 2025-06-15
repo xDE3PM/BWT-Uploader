@@ -81,8 +81,7 @@ def search_tmdb(title, year, media_type, tmdb_api_key):
     return results[0]["id"] if results else None
     
 def get_tmdb_id(imdbID, tmdb_api_key):
-    imdb_id = f"tt{imdbID}"
-    url = f"https://api.themoviedb.org/3/find/{imdb_id}?api_key={tmdb_api_key}&external_source=imdb_id"
+    url = f"https://api.themoviedb.org/3/find/{imdbID}?api_key={tmdb_api_key}&external_source=imdb_id"
     data = requests.get(url).json()
 
     if data.get("movie_results"):
@@ -133,8 +132,9 @@ def get_details():
     file_info = FilePathInfo()
     fmeta = file_info.process()
     tmdb_api_key = config["TMDb"]["API_KEY"]
-    
-    imdbID = fmeta.get("imdbID", "")
+
+    imdb_id = fmeta.get("imdbID", "")
+    imdbID = f"tt{imdb_id}"
     tmdbID = fmeta.get("tmdbID", "") 
     filename = fmeta.get("filename", "")
     skip_youtube = fmeta.get("skip_youtube", False)

@@ -134,7 +134,7 @@ def get_details():
     tmdb_api_key = config["TMDb"]["API_KEY"]
 
     imdb_id = fmeta.get("imdbID", "")
-    imdbID = imdb_id if imdb_id.startswith("tt") else f"tt{imdb_id}"
+    imdbID = f"tt{imdb_id}" if imdb_id and not imdb_id.startswith("tt") else imdb_id if imdb_id else None
     tmdbID = fmeta.get("tmdbID", "") 
     filename = fmeta.get("filename", "")
     skip_youtube = fmeta.get("skip_youtube", False)

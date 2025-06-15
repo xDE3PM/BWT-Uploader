@@ -314,7 +314,7 @@ class BWTorrentUploader:
                     f"[bold green]Torrent Uploaded Successfully![/bold green]\n\n"
                     f"[bold]Torrent Name:[/bold] {self.filename}\n"
                     f"[bold]Torrent ID:[/bold] {torrent_id}\n"
-                    f"[bold]Torrent URL:[/bold] [blue underline]{torrent_url}[/blue underline]"
+                    f"[bold]Torrent URL:[/bold] [underline]{torrent_url}[/underline]"
                 )
             else:
                 console.print("[bold yellow]Upload succeeded but no torrent ID was found.[/bold yellow]")

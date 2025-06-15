@@ -1,4 +1,4 @@
-# 🚀 BWT-Uploader v1.0.0 Beta 
+# 🚀 BWT-Uploader v1.0.0 Stable 
 
 **BWT-Uploader** is a powerful Python-based automation tool for uploading torrents to [BwTorrents](https://bwtorrents.tv). It automatically fetches metadata, handles MediaInfo, and generates BBCode descriptions — making the upload process fast and hassle-free.
 
@@ -38,7 +38,8 @@ You must have these tools installed and accessible from your system’s PATH:
 - [Python 3.9+](https://www.python.org/downloads/)
 - [FFmpeg](https://ffmpeg.org/download.html)
 - [MediaInfo](https://mediaarea.net/en/MediaInfo)
-
+- [mkbrr](https://mkbrr.com/installation)
+  
 ---
 
 ## 🚀 How to Use
@@ -62,9 +63,10 @@ You must have these tools installed and accessible from your system’s PATH:
    ```
 
 4. Ensure system tools are installed:
-   - Python 3.8+
+   - Python 3.9+
    - FFmpeg
    - MediaInfo
+   - mkbrr 
 
 5. Copy and configure:
 
@@ -87,16 +89,13 @@ To proceed with authentication or session-based access, please **save your Netsc
 
 - `BWT.txt`  
   Save the cookies from your browser (exported in Netscape HTTP Cookie File format) for the **BWT** service here.
-
-- `YouTube.txt`  
-  Save the cookies from your browser (exported in Netscape HTTP Cookie File format) for **YouTube** access here.
-
+  
 #### How to Export Cookies
 
 1. Use a browser extension like **[Get cookies.txt](https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc)**.
 2. Visit the target website while logged in.
 3. Click the extension icon and export cookies.
-4. Save the file in this directory as `BWT.txt` and `YouTube.txt` accordingly.
+4. Save the file in this directory as `BWT.txt` accordingly.
 
 > ⚠️ Make sure the files are in the **Netscape HTTP Cookie File format**, otherwise they won't work.
 

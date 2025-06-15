@@ -134,7 +134,7 @@ def get_details():
     tmdb_api_key = config["TMDb"]["API_KEY"]
 
     imdb_id = fmeta.get("imdbID", "")
-    imdbID = f"tt{imdb_id}"
+    imdbID = imdb_id if imdb_id.startswith("tt") else f"tt{imdb_id}"
     tmdbID = fmeta.get("tmdbID", "") 
     filename = fmeta.get("filename", "")
     skip_youtube = fmeta.get("skip_youtube", False)
@@ -148,11 +148,12 @@ def get_details():
     media_type = "movie" if file_type == "movie" else "tv"
 
     # IMDb ID and Details
-    if not imdbID and skip_imdb_tmdb is False:
+    if not imdb_id and skip_imdb_tmdb is False:
         console.print("[bold yellow]Fetching IMDb ID from filename...[/bold yellow]")
         imdbID = search_imdb(filename, title, year, file_type)
         if not imdbID:
-            imdbID = Prompt.ask("[bold red]IMDb ID not found. Please enter IMDb ID number[/bold red]")
+            imdb_id = Prompt.ask("[bold red]IMDb ID not found. Please enter IMDb ID number[/bold red]")
+            imdbID = imdb_id if imdb_id.startswith("tt") else f"tt{imdb_id}"
     if imdbID:
         console.print("[bold yellow]Fetching IMDb Metadata...[/bold yellow]")
         imdb_details = get_imdb_details(imdbID)

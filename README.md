@@ -54,6 +54,13 @@ You must have these tools installed and accessible from your system’s PATH:
    git clone https://github.com/xDE3PM/BWT-Uploader.git
    ```
 
+  * Update Letest Version 
+  
+   ```bash
+   git pull
+   ```
+
+
 2. Change directory:
 
    ```bash

@@ -1,7 +1,6 @@
 ffmpeg-python
 bencode.py
 guessit
-cinemagoer
 py3createtorrent
 rich
 pymediainfo==6.0.1

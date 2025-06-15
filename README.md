@@ -1,4 +1,7 @@
-# 🚀 BWT-Uploader v1.0.0 Stable 
+# 🚀 BWT-Uploader
+**Torrent Upload Assistant for BWTorrents.Tv**
+
+Upload torrents with ease using this assistant CLI.
 
 **BWT-Uploader** is a powerful Python-based automation tool for uploading torrents to [BwTorrents](https://bwtorrents.tv). It automatically fetches metadata, handles MediaInfo, and generates BBCode descriptions — making the upload process fast and hassle-free.
 
@@ -123,16 +126,22 @@ To proceed with authentication or session-based access, please **save your Netsc
 
 ### 💡 CLI Help
 
-| Argument              | Shortcut  | Description |
-|-----------------------|-----------|-------------|
-| `filepath`            | *(positional)* | Path to the file/folder to upload |
-| `--version`           | `-v`      | Show version info |
-| `--imdb`              | `-i`          | Manually enter IMDb ID (e.g., `1234567`) |
-| `--tmdb`              | `-t`          | Manually enter TMDb ID (e.g., `123456`) |
-| `--request`           | `-r`      | Mark torrent as a request |
-| `--recomanded`        | `-rm`     | Mark torrent as recommended |
-| `--doubleupload`      | `-du`     | Enable double upload mode |
-| `--catagory`          | `-c`      | Manually set category ID (e.g., `119`) |
+| Options                | Shortcut      | Description |
+|------------------------|---------------|-------------|
+| `filepath`             | *(positional)*| Path to the file/folder to upload |
+| `--version`            | `-v`          | Show version info |
+| `--imdb IMDb_ID`       | `-i IMDb_ID`  | Manually enter IMDb ID (e.g., `1234567`) |
+| `--tmdb TMDB_ID`       | `-t TMDB_ID`  | Manually enter TMDb ID (e.g., `123456`) |
+| `--no-tmdb`            | `-NT`         | Skip fetching TMDb metadata |
+| `--no-imdb-tmdb`       | `-NIT`        | Skip fetching IMDb and TMDb metadata |
+| `--request`            | `-r`          | Mark torrent as a request |
+| `--recommended`        | `-rm`         | Mark torrent as recommended |
+| `--no-youtube`         | `-NY`         | Skip fetching a YouTube trailer |
+| `--double-upload`      | `-du`         | Enable double upload mode |
+| `--category CATEGORY`  | `-C CATEGORY` | Manually set category ID (e.g., `119`) |
+| `--piece-length N`     | `-p N`        | Set piece length as 2ⁿ bytes (16–27), default: auto |
+
+---
 
 ## 📁 Category ID Reference
 

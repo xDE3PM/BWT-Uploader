@@ -70,7 +70,7 @@ BBCODE_TEMPLATE = """
 {text_info}
 [/font]
 
-[b][color=Red]★ Chapters ★[/color]
+[b][color=Red]★ Chapters ★[/color][/b]
 [font=Courier New]
 {chapters_info}
 [/font]

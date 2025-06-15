@@ -254,22 +254,6 @@ Use the following Category ID when using the `--catagory` or `-c` argument:
 
 ---
 
-## 🙏 Credits
-
-This project relies on the following amazing tools and libraries:
-
-- [ffmpeg-python](https://github.com/kkroening/ffmpeg-python)
-- [bencode.py](https://github.com/fuzeman/bencode.py)
-- [guessit](https://github.com/guessit-io/guessit)
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp)
-- [cinemagoer (IMDbPY)](https://github.com/cinemagoer/cinemagoer)
-- [py3createtorrent](https://github.com/NoOne-hub/py3createtorrent)
-- [rich](https://github.com/Textualize/rich)
-- [pymediainfo](https://github.com/sbraz/pymediainfo)
-- [requests](https://github.com/psf/requests)
-  
----
-
 ## 🤝 Contributing
 
 Found a bug or have a feature suggestion?  

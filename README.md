@@ -59,7 +59,8 @@ You must have these tools installed and accessible from your system’s PATH:
    ```bash
    cd BWT-Uploader
    ```
-   - Update Letest Version 
+   - If you want Update Letest Version
+   - Then run this 
 
    ```bash
    git pull

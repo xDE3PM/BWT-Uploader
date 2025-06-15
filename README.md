@@ -53,7 +53,7 @@ You must have these tools installed and accessible from your system’s PATH:
    ```bash
    git clone https://github.com/xDE3PM/BWT-Uploader.git
    ```
-   - Update Letest Version 
+  - Update Letest Version 
 
    ```bash
    git pull

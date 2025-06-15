@@ -5,7 +5,7 @@ Upload torrents with ease using this assistant CLI.
 
 **BWT-Uploader** is a powerful Python-based automation tool for uploading torrents to [BwTorrents](https://bwtorrents.tv). It automatically fetches metadata, handles MediaInfo, and generates BBCode descriptions — making the upload process fast and hassle-free.
 
-> Created with ❤️ by [xDE3PM](https://github.com/xDE3PM)
+> <strong>Created with ❤️ by [-=DE3PM=-](https://github.com/xDE3PM)</strong>
 
 ---
 
@@ -42,6 +42,7 @@ You must have these tools installed and accessible from your system’s PATH:
 - [FFmpeg](https://ffmpeg.org/download.html)
 - [MediaInfo](https://mediaarea.net/en/MediaInfo)
 - [mkbrr](https://mkbrr.com/installation) (optional)
+- (mkbrr Automatically Install option Available on Windows)
   
 ---
 

@@ -27,10 +27,15 @@ config = {
 
 # Default BBCode template for the torrent description.
 # You may customize the visual style and layout, but DO NOT remove the following placeholders:
-#   - {movie_poster_url} : replaced with movie/series poster image URL
-#   - {file_name}        : replaced with the actual file name
-#   - {mediainfo}        : replaced with formatted MediaInfo output
-#   - {screenshot_bbcode}: replaced with BBCode of uploaded screenshots
+#   - {movie_poster_url} : will be replaced with the movie/series poster image URL
+#   - {file_name}        : will be replaced with the actual file name
+#   - Replace Custom Media Info : manual note for replacing with custom MediaInfo if needed
+#   - {general_info}     : will be dynamically filled with general MediaInfo details
+#   - {video_info}       : will be dynamically filled with video track details
+#   - {audio_info}       : will be dynamically filled with audio track details
+#   - {text_info}        : will be dynamically filled with subtitle track details
+#   - {chapters_info}    : will be dynamically filled with chapter information
+#   - {screenshot_bbcode}: will be replaced with BBCode for uploaded screenshots
 
 BBCODE_TEMPLATE = """
 [center]

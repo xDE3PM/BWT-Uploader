@@ -295,7 +295,7 @@ To update BWT-Uploader to the latest version, run:
 
 ```bash
 git pull
-
+```
 ---
 
 ## 🤝 Contributing

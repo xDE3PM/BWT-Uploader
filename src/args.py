@@ -16,7 +16,7 @@ class CustomArgumentParser(argparse.ArgumentParser):
 class Args:
     def __init__(self):
         self.parser = CustomArgumentParser(
-            prog="BWT-Uploader",
+            prog="python upload.py",
             description="BWT-Uploader: Torrent Upload Assistant for BWTorrents.Tv",
             formatter_class=ShortHelpFormatter
         )
@@ -33,7 +33,7 @@ class Args:
         self.parser.add_argument(
             "--version", "-v",
             action="version",
-            version="BWT-Uploader 1.0.0 Beta",
+            version="BWT-Uploader 1.0.0 Stable",
             help="Show program version and exit"
         )
         self.parser.add_argument(

@@ -181,7 +181,7 @@ def get_details():
 
     # YouTube Trailer
     skip_youtube = fmeta.get("skip_youtube", False)
-    if skip_tmdb and skip_youtube and skip_imdb_tmdb is False:
+    if skip_tmdb is False and skip_youtube is False and skip_imdb_tmdb is False:
         console.print("[bold magenta]Fetching YouTube Trailer...[/bold magenta]")
         trailer_info = get_tmdb_trailer(tmdbID, title, year, media_type, tmdb_api_key)
     else: 

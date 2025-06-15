@@ -260,6 +260,8 @@ Use the following Category ID when using the `--catagory` or `-c` argument:
 
 </details>
 
+## 📁 Piece Size Length Info
+
 <details>
 <summary>📏 <strong>Click to view Piece Size Length Info</strong></summary>
 

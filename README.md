@@ -59,12 +59,6 @@ You must have these tools installed and accessible from your system’s PATH:
    ```bash
    cd BWT-Uploader
    ```
-   - If you want Update Letest Version
-   - Then run this 
-
-   ```bash
-   git pull
-   ```
    
 3. Install dependencies:
 
@@ -292,6 +286,15 @@ Use the following Piece Size Length when using the `--piece-length` or `-p` argu
 | 27        | 128 MiB    | 100+ GiB (Maximum recommended)   |
 
 </details>
+
+---
+
+## 🔄 Update to Latest Version
+
+To update BWT-Uploader to the latest version, run:
+
+```bash
+git pull
 
 ---
 

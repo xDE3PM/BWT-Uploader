@@ -260,6 +260,28 @@ Use the following Category ID when using the `--catagory` or `-c` argument:
 
 </details>
 
+<details>
+<summary>📏 <strong>Click to view Piece Size Length Info</strong></summary>
+
+<br>
+
+| Power (n) | Piece Size | Automatically for File Sizes     |
+|-----------|------------|----------------------------------|
+| 16        | 64 KiB     | < 100 MiB                        |
+| 17        | 128 KiB    | 100–200 MiB                      |
+| 18        | 256 KiB    | 200–400 MiB                      |
+| 19        | 512 KiB    | 400–800 MiB                      |
+| 20        | 1 MiB      | 800 MiB – 1.5 GiB                |
+| 21        | 2 MiB      | 1.5 – 3 GiB                      |
+| 22        | 4 MiB      | 3 – 6 GiB                        |
+| 23        | 8 MiB      | 6 – 12 GiB                       |
+| 24        | 16 MiB     | 12 – 25 GiB                      |
+| 25        | 32 MiB     | 25 – 50 GiB                      |
+| 26        | 64 MiB     | 50 – 100 GiB                     |
+| 27        | 128 MiB    | 100+ GiB (Maximum recommended)   |
+
+</details>
+
 ---
 
 ## 🤝 Contributing

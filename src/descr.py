@@ -41,4 +41,4 @@ class Description:
 
         with open(self.description_bbcode_path, "w", encoding="utf-8") as f:
             f.write(new_content)
-            f.write('[center][font=Courier New][size=3][b][url=https://github.com/xDE3PM/BWT-Uploader][color=red][u]Created by BWT-Uploader[/u][/color][/url][/b][/size][/font][/center]\n')
+            f.write('[center][font=Comic Sans MS][size=3][b][url=https://github.com/xDE3PM/BWT-Uploader][color=red][u]Created by BWT-Uploader[/u][/color][/url][/b][/size][/font][/center]\n')

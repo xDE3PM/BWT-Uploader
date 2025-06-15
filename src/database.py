@@ -27,7 +27,7 @@ def search_imdb(filename, name, year, file_type):
         start_year = movie.get("start_year")
 
         if file_type == "movie" and imdb_type == "movie":
-            if year and start_year == year:
+            if year and str(start_year) == str(year):
                 best_match = movie
                 break
         elif file_type == "episode" and imdb_type in ["tvSeries", "tvMiniSeries"]:
@@ -100,7 +100,7 @@ def get_tmdb_details(tmdbID, media_type, tmdb_api_key):
             "title": content.get("title") or content.get("name", "Unknown"),
             "year": (content.get("release_date") or content.get("first_air_date", ""))[:4],
             "genres": [g["name"] for g in content.get("genres", [])],
-            "rating": content.get("vote_average", "N/A"),
+            "rating": round(content.get("vote_average", 0), 1) if content.get("vote_average") else "N/A",
             "overview": content.get("overview", "No overview available."),
             "poster": f"https://image.tmdb.org/t/p/w780{content.get('poster_path')}" if content.get("poster_path") else None,
             "backdrop": f"https://image.tmdb.org/t/p/w500{content.get('backdrop_path')}" if content.get("backdrop_path") else None,

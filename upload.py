@@ -50,9 +50,7 @@ def main():
     
     if skip_imdb_tmdb is False:
          if skip_tmdb is False:
-             movie_poster_url = details["tmdb"]["poster"] 
-         else:
-             movie_poster_url = details["imdb"]["poster"]
+             movie_poster_url = details["tmdb"]["poster"] or details["imdb"]["poster"]
     else:
         movie_poster_url = Prompt.ask("[bold]Enter your poster URL:")
         

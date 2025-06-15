@@ -149,7 +149,7 @@ To proceed with authentication or session-based access, please **save your Netsc
 Use the following Category ID when using the `--catagory` or `-c` option:
 
 <details>
-<summary><strong>Click to expand full category list</strong>strong></summary>
+<summary><strong>Click to expand full category list</strong></summary>
 
 | Value | Category                       |
 | ----- | ------------------------------ |

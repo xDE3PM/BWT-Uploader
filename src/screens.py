@@ -112,7 +112,8 @@ class Screens:
                 response = requests.post(api_url, data=payload)
                 response.raise_for_status()
             except requests.RequestException as e:
-                console.print(f"[bold red] ✖ Network error uploading {img}: {str(e)}")
+                console.print(f"[bold red] ✖ Failed: Network issue or the same images were uploaded.")
+                console.print(f"[bold red] ✖ Error: {str(e)}")
                 error_exit()
 
             try:

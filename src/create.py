@@ -97,14 +97,14 @@ class Torrent:
                 piece_info = self.piece_size().get(self.piece_size_length)
                 if piece_info:
                     display_size, _ = piece_info
-                    console.print(f"[bold] Using Piece Size Length : {display_size}")
+                    console.print(f"[bold]\n ➥ Using Piece Size Length : {display_size}")
                     cmd.extend(["--piece-length", str(self.piece_size_length)])
                 else:
-                    console.print("[bold red] Piece Size Length : Invalid size")
+                    console.print("[bold red]\n  Piece Size Length : Invalid size")
                     console.print("[bold yellow] Using Default Piece Size")
             else:
-                console.print("[bold red] Piece Size Length : Invalid size")
-                console.print("[bold yellow] Using Default Piece Size")
+                console.print("[bold red]\n Piece Size Length : Invalid size")
+                console.print("[bold yellow]\n Using Default Piece Size")
 
         if self.debug:
             console.print(f"[cyan]mkbrr cmd: {' '.join(cmd)}")
@@ -135,14 +135,14 @@ class Torrent:
                 piece_info = self.piece_size().get(self.piece_size_length)
                 if piece_info:
                     display_size, kib_size = piece_info
-                    console.print(f"[bold] Using Piece Size Length : {display_size}")
+                    console.print(f"[bold]\n ➥ Using Piece Size Length : {display_size}")
                     cmd.extend(["--piece-length", str(kib_size)])
                 else:
                     console.print("[bold red] Piece Size Length : Invalid size")
-                    console.print("[bold yellow] Using Default Piece Size")
+                    console.print("[bold yellow]\n  Using Default Piece Size")
             else:
                 console.print("[bold red] Piece Size Length : Invalid size")
-                console.print("[bold yellow] Using Default Piece Size")
+                console.print("[bold yellow]\n  Using Default Piece Size")
 
         if self.debug:
             console.print(f"[cyan]py3createtorrent cmd: {' '.join(cmd)}")

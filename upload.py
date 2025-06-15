@@ -50,9 +50,14 @@ def main():
     
     if skip_imdb_tmdb is False:
          if skip_tmdb is False:
-             movie_poster_url = details["tmdb"]["poster"] or details["imdb"]["poster"]
-    else:
-        movie_poster_url = Prompt.ask("[bold]Enter your poster URL:")
+             try:
+                 movie_poster_url = details["tmdb"]["poster"] or details["imdb"]["poster"]
+             except (KeyError, TypeError):
+                 console.print("Warning: Could not access TMDB or IMDb poster data. please enter poster url manually.")
+                 
+             
+    if not movie_poster_url:
+       movie_poster_url = Prompt.ask("[bold]Enter your poster URL:")
         
     description = Description()
     description.generate(movie_poster_url)

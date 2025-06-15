@@ -7,5 +7,5 @@ def error_exit(code: int = 1):
     """
     Exits the program with an error message and a non-zero exit code.
     """
-    console.print("[bold red] ✖ Exiting...[/bold red]")
+    console.print("[red] Exiting...[/red]")
     sys.exit(code)

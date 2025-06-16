@@ -23,6 +23,7 @@ from src.checkupdate import VersionChecker
 def main():
     console.print()
     console.rule(f"[bold magenta]🚀 BWT-Uploader [bold yellow]v{version} [bold green]- Created by [bold red]-={author}=-", style="bold cyan")
+    console.print()
     checker = VersionChecker()
     checker.check_for_updates()
     args = Args()
@@ -37,7 +38,7 @@ def main():
     filename = meta["filename"]
     skip_tmdb = meta.get("skip_tmdb", False)
     skip_imdb_tmdb = meta.get("skip_imdb_tmdb", False)
-    console.print(f"\n[bold cyan]File Name:[/bold cyan] {filename}\n")
+    console.print(f"[bold cyan]File Name:[/bold cyan] {filename}\n")
     details = get_details()
     mdprint(details)
     torrent = Torrent()

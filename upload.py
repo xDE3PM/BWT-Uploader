@@ -48,7 +48,7 @@ def main():
     manager = Screens()
     manager.generate_screenshots()
     manager.upload_images()
-    
+    movie_poster_url = None 
     if skip_imdb_tmdb is False:
          if skip_tmdb is False:
              try:

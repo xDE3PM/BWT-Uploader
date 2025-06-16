@@ -92,11 +92,11 @@ class Args:
     def gmeta(self):
         if not self.args.filepath:
             self.parser.print_help(sys.stderr)
-            sys.exit(1, "\nError: filepath is required\n")
+            sys.exit("\nError: filepath is required\n")
         
         if not Path(self.args.filepath).exists():
             self.parser.print_help(sys.stderr)
-            sys.exit(1, f"\nError: filepath '{self.args.filepath}' does not exist\n")
+            sys.exit(f"\nError: filepath '{self.args.filepath}' does not exist\n")
          
         meta = {
             "filepath": str(self.args.filepath),

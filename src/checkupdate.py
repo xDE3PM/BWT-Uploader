@@ -48,8 +48,8 @@ class VersionChecker:
             return False
 
         if version.parse(remote_version) > version.parse(local_version):
-            console.print(f"\n[red][NOTICE] [green]Update available: v[/green][yellow]{remote_version}")
-            console.print(f"[red][NOTICE] [green]Current version: v[/green][yellow]{local_version}")
+            console.print(f"[red][NOTICE] [green]Update available: v[/green][yellow]{remote_version}")
+            console.print(f"[red][NOTICE] [green]Current version: v[/green][yellow]{local_version}\n")
             return True
 
         return False

@@ -42,7 +42,7 @@ BBCODE_TEMPLATE = """
 [img]{movie_poster_url}[/img]
 
 [b][size=4][color=red]
-[font=Courier New]{file_name}[/font][/color]
+[font=Arial]{file_name}[/font][/color]
 [/size][/b]
 
 [img]https://i.ibb.co/DfF7Pbt/Media-Info.png[/img]
@@ -82,6 +82,6 @@ BBCODE_TEMPLATE = """
 
 {screenshot_bbcode}
 
-[b][size=5][color=green][font=Courier New]....Enjoying & Keep Seeding if possible....[/font][/color][/size][/b]
+[b][size=5][color=green][font=Courier New]....Enjoying & Keep Seeding....[/font][/color][/size][/b]
 [/center]
 """

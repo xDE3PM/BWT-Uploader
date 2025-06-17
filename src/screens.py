@@ -16,6 +16,7 @@ class Screens:
         self.file_info = FilePathInfo()
         self.fmeta = self.file_info.process()
         self.video_path = self.fmeta.get('videopath')
+        self.video_filename = self.fmeta.get('video_filename')
         self.upload_folder = self.fmeta.get('upload_folder')
 
     def generate_screenshots(self):
@@ -41,7 +42,7 @@ class Screens:
         console.print("[bold yellow] ➥ Generating Screenshots...")
         generated_count = 0
         for i, timestamp in enumerate(timestamps, start=1):
-            output_path = os.path.join(output_directory, f"screenshot_{i:02d}.png")
+            output_path = os.path.join(output_directory, f"{self.video_filename}_screenshot_{i:02d}.png")
             try:
                 (
                     ffmpeg

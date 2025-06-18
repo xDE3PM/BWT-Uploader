@@ -12,7 +12,7 @@ class Description:
         self.file_info = FilePathInfo()
         self.fmeta = self.file_info.process()
         self.upload_folder = self.fmeta.get('upload_folder')
-        self.filename_noext = self.fmeta.get('filename_noext')
+        self.filename = self.fmeta.get('filename')
         self.description_bbcode_path = os.path.join(self.upload_folder, "[BBCode]Torrent_Description.txt")
         self.media_info_path = os.path.join(self.upload_folder, "Custom_Media_Info.txt")
         self.screenshot_links = os.path.join(self.upload_folder, "screenshots/uploaddata/bbcode_medium.txt")
@@ -30,7 +30,7 @@ class Description:
 
         new_content = textwrap.dedent(BBCODE_TEMPLATE).format(
             movie_poster_url=movie_poster_url,
-            file_name=file_name,
+            file_name=filename,
             general_info=general,
             video_info=video,
             audio_info=audio,

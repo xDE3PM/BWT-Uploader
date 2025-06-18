@@ -5,6 +5,7 @@ import base64
 import json
 import requests
 import ffmpeg
+import random
 from src.filepath import FilePathInfo
 from data.config import config
 from src.ia import console
@@ -36,9 +37,13 @@ class Screens:
             console.print(f"[bold red] ✖ Error probing video: {e.stderr.decode()}")
             error_exit()
 
-        adjusted_duration = max(60, math.floor(duration) - 500)
-        timestamps = [adjusted_duration / num_screenshots * i for i in range(1, num_screenshots + 1)]
-
+        start = duration * 0.10
+        end = duration * 0.90       
+        timestamps = sorted(random.sample(
+            [round(random.uniform(start, end), 2) for _ in range(num_screenshots * 2)],
+            num_screenshots
+        ))
+            
         console.print("[bold yellow] ➥ Generating Screenshots...")
         generated_count = 0
         for i, timestamp in enumerate(timestamps, start=1):
@@ -48,7 +53,7 @@ class Screens:
                     ffmpeg
                     .input(self.video_path, ss=timestamp)
                     .output(output_path, vframes=1, q=quality)
-                    .run(overwrite_output=False, quiet=True)
+                    .run(overwrite_output=True, quiet=True)
                 )
                 generated_count += 1
             except ffmpeg.Error as e:
@@ -141,7 +146,7 @@ class Screens:
             if not img_response.get("success", True):
                 error_msg = img_response.get("error", {}).get("message", "Unknown error")
                 console.print(f"[bold red] ✖ Upload failed for {img}: {error_msg}")
-                error_exit()
+                continue
                 
             upload_results.append({img: img_response})
 

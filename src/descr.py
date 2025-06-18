@@ -26,7 +26,7 @@ class Description:
 
         mi = MediaInfoExtractor()
         general, video, audio, subtitle, chapters = mi.get_custom_mediainfo()
-        file_name = self.filename 
+        filename = self.filename 
 
         new_content = textwrap.dedent(BBCODE_TEMPLATE).format(
             movie_poster_url=movie_poster_url,

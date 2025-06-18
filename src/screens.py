@@ -143,7 +143,7 @@ class Screens:
                 console.print(f"[bold red] ✖ JSON decode error for {img}")
                 error_exit()
 
-            if response.status_code != 200 or not response_data.get('success'):
+            if response.status_code != 200 or not img_response.get('success'):
                 error_msg = img_response.get("error", {}).get("message", "Unknown error")
                 console.print(f"[bold red] ✖ Upload failed for {img}: {error_msg}")
                 continue

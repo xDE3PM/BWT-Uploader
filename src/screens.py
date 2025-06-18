@@ -107,11 +107,26 @@ class Screens:
             with open(output_path, "rb") as file:
                 img_base64 = base64.b64encode(file.read()).decode('utf-8')
 
-            payload = {"key": image_host_api_key, "image": img_base64}
+            payload = {
+                'key': image_host_api_key,
+                'image': img_base64
+            }
 
             try:
-                response = requests.post(api_url, data=payload)
+                response = requests.post(api_url, data=payload, timeout=30)
                 response.raise_for_status()
+            except requests.Timeout as e:
+                console.print("[bold red] ✖ Timeout occurred.")
+                console.print(f"[bold red] ✖ Error: {str(e)}")                
+                error_exit()
+            except requests.ConnectionError as e:
+                console.print("[bold red] ✖ Network connection error.")
+                console.print(f"[bold red] ✖ Error: {str(e)}")
+                error_exit()
+            except requests.HTTPError as e:
+                console.print(f"[bold red] ✖ HTTP error: {e.response.status_code}")
+                console.print(f"[bold red] ✖ Error: {str(e)}")
+                error_exit()
             except requests.RequestException as e:
                 console.print(f"[bold red] ✖ Failed: Network issue or the same images were already uploaded.")
                 console.print(f"[bold red] ✖ Error: {str(e)}")

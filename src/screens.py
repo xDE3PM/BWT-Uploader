@@ -118,7 +118,7 @@ class Screens:
             }
 
             try:
-                response = requests.post(api_url, data=payload, timeout=30)
+                response = requests.post(api_url, data=payload, timeout=60)
                 response.raise_for_status()
             except requests.Timeout as e:
                 console.print("[bold red] ✖ Timeout occurred.")
@@ -133,7 +133,7 @@ class Screens:
                 console.print(f"[bold red] ✖ Error: {str(e)}")
                 error_exit()
             except requests.RequestException as e:
-                console.print(f"[bold red] ✖ Failed: Network issue or the same images were already uploaded.")
+                console.print(f"[bold red] ✖ Failed: A network or request error occurred.")
                 console.print(f"[bold red] ✖ Error: {str(e)}")
                 error_exit()
 
@@ -143,7 +143,7 @@ class Screens:
                 console.print(f"[bold red] ✖ JSON decode error for {img}")
                 error_exit()
 
-            if not img_response.get("success", True):
+            if response.status_code != 200 or not response_data.get('success'):
                 error_msg = img_response.get("error", {}).get("message", "Unknown error")
                 console.print(f"[bold red] ✖ Upload failed for {img}: {error_msg}")
                 continue

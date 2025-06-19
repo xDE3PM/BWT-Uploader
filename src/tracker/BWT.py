@@ -145,7 +145,7 @@ class BWTorrentUploader:
         youtube_link = metadata.get("trailer", {}).get("url", "")
         name = self.filename
         poster = metadata.get("tmdb", {}).get("poster") or metadata.get("imdb", {}).get("poster", "")
-        category_id = metadata.get("catagory_id") or self.select_category()
+        category_id = metadata.get("category_id") or self.select_category()
         request = metadata.get("request")
         double_upload = metadata.get("doubleupload")
         recomanded = metadata.get("recomanded")

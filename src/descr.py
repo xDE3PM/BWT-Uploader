@@ -18,9 +18,6 @@ class Description:
         self.screenshot_links = os.path.join(self.upload_folder, "screenshots/uploaddata/bbcode_medium.txt")
         
     def generate(self, movie_poster_url):
-        if os.path.exists(self.description_bbcode_path):
-            return
-
         with open(self.screenshot_links, 'r', encoding="utf-8") as f:
             screenshot_bbcode = f.read().strip()
 

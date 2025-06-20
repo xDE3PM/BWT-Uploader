@@ -140,8 +140,8 @@ class MediaInfoExtractor:
             chapter_keys = sorted([k for k in menu if re.match(r'\d{2}_\d{2}_\d{5}', k)])
             for i, key in enumerate(chapter_keys, 1):
                 timestamp = key.replace('_', ':')[:8]
-                title = g(menu, 'title', f"Chapter {i:02d}")
-                title = re.sub(r'^\w{2}:', '', title)
+                raw_title = menu.get(key, f"Chapter {i:02d}")
+                title = re.sub(r'^\w{2}:(\s*)?', '', raw_title)
                 menu_info.append(f"Chapter {i:02d}...........: {timestamp} - {title}")
         menu_info = '\n'.join(menu_info) if menu_info else '[b]Chapter Not Available.[/b]'
 

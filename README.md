@@ -139,7 +139,7 @@ To proceed with authentication or session-based access, please **save your Netsc
 | `--recommended`        | `-rm`         | Mark torrent as recommended |
 | `--no-youtube`         | `-NY`         | Skip fetching a YouTube trailer |
 | `--double-upload`      | `-du`         | Enable double upload mode |
-| `--category CATEGORY`  | `-C CATEGORY` | Manually set category ID (e.g., `119`) |
+| `--category`  | `-c` | Manually set category ID (e.g., `119`) |
 | `--piece-length N`     | `-p N`        | Set piece length as 2ⁿ bytes (16–27), default: auto |
 
 ---

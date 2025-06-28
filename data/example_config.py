@@ -47,8 +47,6 @@ BBCODE_TEMPLATE = """
 
 [img]https://i.ibb.co/DfF7Pbt/Media-Info.png[/img]
 
-†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****††*****†*****†*****†*****†
-
 [quote]
 [b][color=green]★ General ★[/color][/b]
 [font=Courier New]
@@ -75,8 +73,6 @@ BBCODE_TEMPLATE = """
 {chapters_info}
 [/font]
 [/quote]
-
-†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****†*****††*****†*****†*****†*****†
 
 [img]https://i.ibb.co/9vZTnQk/Screenshot.png[/img]
 

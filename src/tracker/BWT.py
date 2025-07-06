@@ -312,7 +312,7 @@ class BWTorrentUploader:
                 torrent_url = f"{self.base_url}/details.php?id={torrent_id}"
                 console.print(
                     f"[bold green]Torrent Uploaded Successfully![/bold green]\n\n"
-                    f"[bold]Torrent Name:[/bold] {self.filename}\n"
+                    f"[bold]Torrent Name:[/bold] {bwt_name}\n"
                     f"[bold]Torrent ID:[/bold] {torrent_id}\n"
                     f"[bold]Torrent URL:[/bold] [underline]{torrent_url}[/underline]"
                 )

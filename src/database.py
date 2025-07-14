@@ -102,8 +102,8 @@ def get_tmdb_details(tmdbID, media_type, tmdb_api_key):
             "genres": [g["name"] for g in content.get("genres", [])],
             "rating": round(content.get("vote_average", 0), 1) if content.get("vote_average") else "N/A",
             "overview": content.get("overview", "No overview available."),
-            "poster": f"https://image.tmdb.org/t/p/w500{content.get('poster_path')}" if content.get("poster_path") else None,
-            "backdrop": f"https://image.tmdb.org/t/p/w500{content.get('backdrop_path')}" if content.get("backdrop_path") else None,
+            "poster": f"https://image.tmdb.org/t/p/w780{content.get('poster_path')}" if content.get("poster_path") else None,
+            "backdrop": f"https://image.tmdb.org/t/p/w780{content.get('backdrop_path')}" if content.get("backdrop_path") else None,
             "tmdb_link": f"https://www.themoviedb.org/{media_type}/{tmdbID}/",
             "more_poster": f"https://www.themoviedb.org/{media_type}/{tmdbID}/images/posters",
             "more_backdrop": f"https://www.themoviedb.org/{media_type}/{tmdbID}/images/backdrops"

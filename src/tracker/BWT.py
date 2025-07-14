@@ -301,7 +301,10 @@ class BWTorrentUploader:
             
         with open(torrent_path, 'rb') as torrent_file:
             files = {'file': torrent_file}
-            response = requests.post(f"{self.base_url}/takeupload.php", cookies=cookies, files=files, data=data)
+            headers = {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+            }
+            response = requests.post(f"{self.base_url}/takeupload.php", headers=headers, cookies=cookies, files=files, data=data)
 
         console.print(f"\n[bold cyan]Status Code:[/bold cyan] {response.status_code}\n")
         

@@ -320,7 +320,9 @@ class BWTorrentUploader:
                     f"[bold]Torrent URL:[/bold] [underline]{torrent_url}[/underline]"
                 )
             else:
-                console.print("[bold yellow]Upload succeeded but no torrent ID was found.[/bold yellow]")
+                console.print(f"[bold red]Upload Failed![/bold red]")
+                console.print(f"[dim]{response.text}[/dim]")
+
         else:
             console.print(f"[bold red]Upload Failed![/bold red]")
             console.print(f"[dim]{response.text}[/dim]")

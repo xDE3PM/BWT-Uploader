@@ -52,12 +52,12 @@ def get_imdb_details(imdbID):
 
     return {
         "id": movie.get("id", imdbID),
-        "title": movie.get("primary_title", "N/A"),
-        "year": movie.get("start_year", "N/A"),
+        "title": movie.get("primaryTitle", "N/A"),
+        "year": movie.get("startYear", "N/A"),
         "genres": movie.get("genres", []),
-        "rating": movie.get("rating", {}).get("aggregate_rating", "N/A"),
+        "rating": movie.get("rating", {}).get("aggregateRating", "N/A"),
         "plot": movie.get("plot", "N/A"),
-        "poster": movie.get("primary_image", {}).get("url", "N/A"),
+        "poster": movie.get("primaryImage", {}).get("url", "N/A"),
         "link": f"https://www.imdb.com/title/{imdbID}/",
         "type": movie.get("type", "N/A").upper()
     }

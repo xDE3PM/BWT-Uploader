@@ -131,6 +131,8 @@ class BWTorrentUploader:
         self.file_info = FilePathInfo()
         self.fmeta = self.file_info.process()
         self.filepath = self.fmeta.get('filepath')
+        self.video_media = self.fmeta.get("video_media", False)
+        self.audio_music = self.fmeta.get("audio_music", False)
         self.torrent_path = self.fmeta.get('torrent_path')
         self.upload_folder = self.fmeta.get('upload_folder')
         self.base_url = "https://bwtorrents.tv"
@@ -138,9 +140,12 @@ class BWTorrentUploader:
         
     def load_metadata(self):
         bbcode_path = os.path.join(self.upload_folder, "[BBCode]Torrent_Description.txt")
-        with open(self.meta_path, 'r', encoding='utf-8') as f:
-            metadata = json.load(f)
-
+        if self.video_media:
+            with open(self.meta_path, 'r', encoding='utf-8') as f:
+                metadata = json.load(f)
+        if self.audio_music:
+            metadata = self.fmeta
+            
         imdb_link = metadata.get("imdb", {}).get("link", "")
         youtube_link = metadata.get("trailer", {}).get("url", "")
         name = self.filename
@@ -212,8 +217,13 @@ class BWTorrentUploader:
         return freeleech
 
     def select_category(self):
+
         console.print("\n[bold cyan]Select a Main Category:[/bold cyan]")
-        for group_id, (name, _) in CATGROUPS.items():
+        if self.audio_music:
+            filtered_groups = {8: CATGROUPS[8]}
+        else:
+            filtered_groups = CATGROUPS
+        for group_id, (name, _) in filtered_groups.items():
             console.print(f" [bold yellow]{group_id}[/bold yellow]. {name}")
 
         group_choice = IntPrompt.ask("\nEnter category number", choices=[str(i) for i in CATGROUPS])

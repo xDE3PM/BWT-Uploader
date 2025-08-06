@@ -22,6 +22,15 @@ config = {
         "Lookmyimg": "lookmyimg_api_key",              # Required if image_host is "Lookmyimg"
         "Onlyimg": "onlyimg_api_key",         # Required if image_host is "Onlyimg"
         "PTScreen": "ptscreen_api_key"        # Required if image_host is "PTScreen"
+    },
+
+    "bbcode_config": {
+        "media_info_style": "[img]https://i.ibb.co/DfF7Pbt/Media-Info.png[/img]",
+        "general_style": "[b][color=green]★ General ★[/color][/b]",
+        "video_track_style": "[b][color=blue]★ Video Track ★[/color][/b]",
+        "audio_track_style": "[b][color=orange]★ Audio Track ★[/color][/b]",
+        "subtitle_style": "[b][color=teal]★ Subtitle ★[/color][/b]",
+        "chapters_style": "[b][color=Red]★ Chapters ★[/color][/b]"
     }
 }
 
@@ -45,34 +54,7 @@ BBCODE_TEMPLATE = """
 [font=Arial]{file_name}[/font][/color]
 [/size][/b]
 
-[img]https://i.ibb.co/DfF7Pbt/Media-Info.png[/img]
-
-[quote]
-[b][color=green]★ General ★[/color][/b]
-[font=Courier New]
-{general_info}
-[/font]
-
-[b][color=blue]★ Video Track ★[/color][/b]
-[font=Courier New]
-{video_info}
-[/font]
-
-[b][color=orange]★ Audio Track ★[/color][/b]
-[font=Courier New]
-{audio_info}
-[/font]
-
-[b][color=teal]★ Subtitle ★[/color][/b]
-[font=Courier New]
-{text_info}
-[/font]
-
-[b][color=Red]★ Chapters ★[/color][/b]
-[font=Courier New]
-{chapters_info}
-[/font]
-[/quote]
+{media_info}
 
 [img]https://i.ibb.co/9vZTnQk/Screenshot.png[/img]
 

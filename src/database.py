@@ -44,7 +44,7 @@ def get_imdb_details(imdbID):
     """
     Fetches full IMDb details by IMDb ID.
     """
-    BASE_URL = "https://rest.imdbapi.dev/v2"
+    BASE_URL = "https://api.imdbapi.dev"
     url = f"{BASE_URL}/titles/{imdbID}"
     response = requests.get(url)
     response.raise_for_status()

@@ -13,7 +13,7 @@ def search_imdb(filename, name, year, file_type):
     """
     Searches IMDb and returns the best matching IMDb ID based on name, year, and type.
     """
-    BASE_URL = "https://rest.imdbapi.dev/v2"
+    BASE_URL = "https://api.imdbapi.dev"
     url = f"{BASE_URL}/search/titles"
     params = {"query": f"{name} {year}"}
     response = requests.get(url, params=params)

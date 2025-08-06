@@ -1,21 +1,25 @@
 import json, os, re
+from pathlib import Path
+from data.config import config
 from pymediainfo import MediaInfo
 from src.filepath import FilePathInfo
 from src.ia import console
+from rich.prompt import Prompt
 
 class MediaInfoExtractor:
     def __init__(self):
         self.data = None
         self.file_info = FilePathInfo()
         self.fmeta = self.file_info.process()
+        self.filepath = self.fmeta.get('filepath')
         self.video_path = self.fmeta.get('videopath')
         self.upload_folder = self.fmeta.get('upload_folder')
         self.template_path = "data/templates/Media_Info.txt"
         self.mi_text_path = os.path.join(self.upload_folder, "Media_Info.txt")
         self.mi_json_path = os.path.join(self.upload_folder, "MediaInfo.json")
+        self.save_audio_bbcode = os.path.join(self.upload_folder, "Music_Audio_[Description_BBCode].txt")
         self.video_file_name = self.fmeta.get('video_filename')
 
-        
     def save_mi_text(self, filepath, media_info):
         lines = media_info.splitlines()
         with open(filepath, "w", encoding="utf-8") as f:
@@ -69,16 +73,17 @@ class MediaInfoExtractor:
     def _get_list(self, t, k, i, d=''):
         return t.get(k, [''])[i] if t and len(t.get(k, [''])) > i else d
 
-    def extract_all_details(self):
-        if not self.data or not self.data.get('tracks'):
-            return '', '', '', '', ''
+    def gen_video_info(self):
+        
+        if not self.data:
+            if not self.load_mediainfo_json():
+                console.print("[bold red] ✘ MediaInfo data not loaded. Run vprocess() first.[/bold red]")
+                return ''
 
         data = self.data
         g = self._g
         get_list = self._get_list
-
-        # General
-        general_info = []
+        general_info, video_info, audio_info, text_info, chapters_info = [], [], [], [], []
         general = next((t for t in data['tracks'] if t.get('track_type') == 'General'), None)
         if general:
             general_info.append(f"File Name.............: {g(general, 'file_name_extension')}")
@@ -88,8 +93,6 @@ class MediaInfoExtractor:
             general_info.append(f"File Size.............: {get_list(general, 'other_file_size', 3)}")
         general_info = '\n'.join(general_info)
 
-        # Video
-        video_info = []
         video = next((t for t in data['tracks'] if t.get('track_type') == 'Video'), None)
         if video:
             if g(video, 'title'):
@@ -104,10 +107,8 @@ class MediaInfoExtractor:
                 video_info.append(f"Color Primaries.......: {g(video, 'color_primaries')}")
             if get_list(video, 'other_writing_library', 0):
                 video_info.append(f"Encoding Library......: {get_list(video, 'other_writing_library', 0)}")
-        video_info = '\n'.join(video_info) if video_info else '[b]Video Not Available.[/b]'
+        video_info = '\n'.join(video_info) if video_info else ''
 
-        # Audio
-        audio_info = []
         audios = [t for t in data['tracks'] if t.get('track_type') == 'Audio']
         if audios:
             for i, t in enumerate(audios):
@@ -120,10 +121,8 @@ class MediaInfoExtractor:
                 audio_info.append(f"Channels..............: {g(t, 'channel_s')} channels ({g(t, 'channel_positions')})")
                 if i < len(audios) - 1:
                     audio_info.append("")
-        audio_info = '\n'.join(audio_info) if audio_info else '[b]Audio Not Available.[/b]'
+        audio_info = '\n'.join(audio_info) if audio_info else ''
 
-        # Subtitles
-        text_info = []
         texts = [t for t in data['tracks'] if t.get('track_type') == 'Text']
         if texts:
             for i, t in enumerate(texts):
@@ -131,10 +130,8 @@ class MediaInfoExtractor:
                 text_info.append(f"Language .............: {title}{get_list(t, 'other_language', 0)} ({g(t, 'commercial_name', g(t, 'format'))})")
                 if i < len(texts) - 1:
                     text_info.append("")
-        text_info = '\n'.join(text_info) if text_info else '[b]Subtitle Not Available.[/b]'
+        text_info = '\n'.join(text_info) if text_info else ''
 
-        # Chapters
-        menu_info = []
         menu = next((t for t in data['tracks'] if t.get('track_type') == 'Menu'), None)
         if menu and any(k for k in menu if re.match(r'\d{2}_\d{2}_\d{5}', k)):
             chapter_keys = sorted([k for k in menu if re.match(r'\d{2}_\d{2}_\d{5}', k)])
@@ -142,20 +139,117 @@ class MediaInfoExtractor:
                 timestamp = key.replace('_', ':')[:8]
                 raw_title = menu.get(key, f"Chapter {i:02d}")
                 title = re.sub(r'^\w{2}:(\s*)?', '', raw_title)
-                menu_info.append(f"Chapter {i:02d}...........: {timestamp} - {title}")
-        menu_info = '\n'.join(menu_info) if menu_info else '[b]Chapter Not Available.[/b]'
+                chapters_info.append(f"Chapter {i:02d}...........: {timestamp} - {title}")
+        chapters_info = '\n'.join(chapters_info) if chapters_info else ''
 
-        return general_info, video_info, audio_info, text_info, menu_info
+        bb = config["bbcode_config"]
+        media_info_txt = f"{bb['media_info_style']}\n\n[quote]\n"
+        media_info_txt += f"{bb['general_style']}\n[font=Courier New]\n{general_info}\n[/font]\n\n"
+        media_info_txt += f"{bb['video_track_style']}\n[font=Courier New]\n{video_info}\n[/font]\n\n"
+        media_info_txt += f"{bb['audio_track_style']}\n[font=Courier New]\n{audio_info}\n[/font]"
+        if text_info:
+            media_info_txt += f"\n\n{bb['subtitle_style']}\n[font=Courier New]\n{text_info}\n[/font]"
+        if chapters_info:
+            media_info_txt += f"\n\n{bb['chapters_style']}\n[font=Courier New]\n{chapters_info}\n[/font]"
+        media_info_txt += "\n[/quote]"
+        
+        return media_info_txt
 
-    def process(self):
+    def video_process(self):
         if self.save_media_info() and self.load_mediainfo_json():
             console.print("[bold green] ✔ MediaInfo Exported...[/bold green]")
         else:
             console.print("[bold red] ✘ Failed to export/load MediaInfo.[/bold red]")
+            
+    def gen_audio_info(self):
+        folder = Path(self.filepath).resolve()
+        if not folder.exists() or not folder.is_dir():
+            console.print(f"[red]Folder not found: {folder}[/red]")
+            return
 
-    def get_custom_mediainfo(self):
-        if not self.data:
-            if not self.load_mediainfo_json():
-                console.print("[bold red] ✘ MediaInfo data not loaded. Run process() first.[/bold red]")
-                return '', '', '', '', ''
-        return self.extract_all_details()
+        audio_exts = {'.mp3', '.flac', '.m4a', '.aac', '.ogg', '.wav', '.ac3', '.eac3'}
+        audio_files = sorted([f for f in folder.iterdir() if f.suffix.lower() in audio_exts])
+
+        if not audio_files:
+            console.print("[yellow]No audio files found in this folder.[/yellow]")
+            return
+
+        lines = []
+        confirm = Prompt.ask("[bold] You want to add audio album poster link on description?", choices=["y", "N"], case_sensitive=False)
+        audio_music_album_url = ""
+        if confirm.lower() != "n":
+            audio_music_album_url = Prompt.ask("[bold]Enter your audio album poster URL:")
+
+        if audio_music_album_url:
+            lines.append(f"[center][img]{audio_music_album_url}[/img][/center]\n")
+
+        lines.append(f"[center][b][color=red][size=4]{folder.name}[/size][/color][/b][/center]\n\n")
+        lines.append(f"[color=YellowGreen][size=3][b]Tracks List[/b][/size][/color]\n[font=Courier New][color=Red][b]-----------[/b][/color][/font]\n")
+            
+        for index, file in enumerate(audio_files, 1):
+            media_info = MediaInfo.parse(file)
+            audio = next((t for t in media_info.tracks if t.track_type == "Audio"), None)
+            general = next((t for t in media_info.tracks if t.track_type == "General"), None)
+
+            if not audio:
+                continue
+
+            size_mb = file.stat().st_size / (1024 * 1024)
+            file_size = f"{size_mb:.1f} MB"
+
+            format_name = audio.commercial_name or audio.format or "?"
+            if audio.other_format:
+                format_name += f" ({audio.other_format[0]})"
+
+            bitrate = audio.other_bit_rate[0] if audio.other_bit_rate else "?"
+            bitrate_mode = audio.bit_rate_mode or ""
+            bitrate_full = f"{bitrate} ({bitrate_mode})" if bitrate_mode else bitrate
+
+            sampling_rate = (
+                audio.other_sampling_rate[0] if audio.other_sampling_rate
+                else f"{audio.sampling_rate / 1000:.1f} kHz" if audio.sampling_rate
+                else "?"
+            )
+
+            channels = f"{audio.other_channel_s[0]}" if audio.other_channel_s else "?"
+            if audio.channel_positions:
+                channels += f" ({audio.channel_positions})"
+
+            duration = general.other_duration[0] if general and general.other_duration else "?"
+            title = getattr(general, "title", None) or file.stem
+
+            lines.append(f"[b][color=yellow]{file.name} ({file_size})[/color][/b]")
+            lines.append("[font=Courier New]")
+            lines.append(f"Title          : {title}")
+            lines.append(f"Duration       : {duration}")
+            lines.append(f"Format         : {format_name}")
+            lines.append(f"Bitrate        : {bitrate_full}")
+            lines.append(f"Sampling Rate  : {sampling_rate}")
+            lines.append(f"Channels       : {channels}")
+            lines.append("------------------------------------------------------------")
+            lines.append("[/font]")
+
+        audio_des_code = "\n".join(lines)
+        Path(self.mi_json_path).write_text(json.dumps(self.data, indent=2), encoding="utf-8")
+
+        return audio_des_code
+
+    def gen_raw_dvd_info(self):
+        return self.gen_video_info()
+
+    def gen_raw_bluray_info(self):
+        return self.gen_video_info()
+
+    def process(self):
+        self.data = MediaInfo.parse(self.video_path).to_data()
+        if self.fmeta.get("video_media"):
+            return self.gen_video_info()
+        elif self.fmeta.get("audio_music"):
+            return self.gen_audio_info()
+        elif self.fmeta.get("raw_dvd"):
+            return self.gen_raw_dvd_info()
+        elif self.fmeta.get("raw_bluray"):
+            return self.gen_raw_bluray_info()
+        else:
+            console.print("[red]No valid media type found in metadata.[/red]")
+            return None

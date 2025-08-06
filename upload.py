@@ -4,7 +4,6 @@
 
 from src.ia import console
 from rich.prompt import Prompt
-from rich.panel import Panel
 import sys
 
 from src.args import Args
@@ -20,12 +19,17 @@ from src.tracker.BWT import BWTorrentUploader
 from src.version import version, author
 from src.checkupdate import VersionChecker
 
+
 def main():
     console.print()
     console.rule(f"[bold magenta]🚀 BWT-Uploader [bold yellow]v{version} [bold green]- Created by [bold red]-={author}=-", style="bold cyan")
     console.print()
+
+    # Check for updates
     checker = VersionChecker()
     checker.check_for_updates()
+
+    # Load CLI arguments
     args = Args()
     meta_args = args.gmeta()
 
@@ -33,39 +37,73 @@ def main():
         console.print("[bold red]Error: Filepath is required.[/bold red]")
         error_exit()
 
+    # File Info
     file_info = FilePathInfo()
     meta = file_info.process()
+
     filename = meta["filename"]
+    video_media = meta.get("video_media", False)
+    audio_music = meta.get("audio_music", False)
     skip_tmdb = meta.get("skip_tmdb", False)
     skip_imdb_tmdb = meta.get("skip_imdb_tmdb", False)
+
     console.print(f"[bold cyan]File Name:[/bold cyan] {filename}\n")
-    details = get_details()
-    mdprint(details)
+
+    # Get metadata (IMDB/TMDB)
+    if video_media:
+        details = get_details()
+        mdprint(details)
+    elif audio_music:
+        mdprint(meta)
+
+    # Create torrent
     torrent = Torrent()
     torrent.create()
-    mi = MediaInfoExtractor()
-    mi.process()
-    manager = Screens()
-    manager.generate_screenshots()
-    manager.upload_images()
-    movie_poster_url = None 
-    if skip_imdb_tmdb is False:
-         if skip_tmdb is False:
-             movie_poster_url = details["tmdb"]["poster"]   
-             if not movie_poster_url:
-                 movie_poster_url = details["imdb"]["poster"]
-         else:
-              movie_poster_url = details["imdb"]["poster"]
-                 
-    if not movie_poster_url:
-       movie_poster_url = Prompt.ask("[bold]Enter your poster URL:")
+
+    if video_media:
+        mi = MediaInfoExtractor()
+        mi.video_process()
         
+    # Initialize poster URL as None
+    movie_poster_url = None
+
+    # Screenshots and poster selection (only for video)
+    if video_media:
+        manager = Screens()
+        manager.generate_screenshots()
+        manager.upload_images()
+
+        if not skip_imdb_tmdb and not skip_tmdb:
+            backdrop_poster_url = details.get("tmdb", {}).get("more_backdrop")
+            if backdrop_poster_url:
+                console.print()
+                confirm = Prompt.ask(
+                    "[bold]Do you want to add a another poster link to the description?[/bold]",
+                    choices=["y", "N"], default="N", case_sensitive=False
+                )
+                if confirm.lower() == "y":
+                    console.print(f"[bold cyan]Backdrop Poster Link (TMDb):[/bold cyan] {backdrop_poster_url}")
+                    movie_poster_url = Prompt.ask("[bold]Enter your poster URL:[/bold]")
+
+        # Fallbacks if user didn't enter poster URL
+        if not movie_poster_url and not skip_imdb_tmdb:
+            if not skip_tmdb:
+                movie_poster_url = details.get("tmdb", {}).get("poster")
+                if not movie_poster_url:
+                    movie_poster_url = details.get("imdb", {}).get("poster")
+            else:
+                movie_poster_url = details.get("imdb", {}).get("poster")
+
+        if not movie_poster_url:
+            movie_poster_url = Prompt.ask("[bold]Enter your poster URL:[/bold]")
+
+    # Description generation
     description = Description()
-    description.generate(movie_poster_url)
+    description.generate(movie_poster_url if video_media else None)
+
+    # Upload to BWT
     bwtup = BWTorrentUploader()
     bwtup.upload()
-
-    console.print("\n[bold green]Upload process completed successfully![/bold green]")
 
 if __name__ == "__main__":
     main()

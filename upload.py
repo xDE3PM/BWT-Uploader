@@ -73,19 +73,6 @@ def main():
         manager.generate_screenshots()
         manager.upload_images()
 
-        if not skip_imdb_tmdb and not skip_tmdb:
-            backdrop_poster_url = details.get("tmdb", {}).get("more_backdrop")
-            if backdrop_poster_url:
-                console.print()
-                confirm = Prompt.ask(
-                    "[bold]Do you want to add a another poster link to the description?[/bold]",
-                    choices=["y", "N"], default="N", case_sensitive=False
-                )
-                if confirm.lower() == "y":
-                    console.print(f"[bold cyan]Backdrop Poster Link (TMDb):[/bold cyan] {backdrop_poster_url}")
-                    movie_poster_url = Prompt.ask("[bold]Enter your poster URL:[/bold]")
-
-        # Fallbacks if user didn't enter poster URL
         if not movie_poster_url and not skip_imdb_tmdb:
             if not skip_tmdb:
                 movie_poster_url = details.get("tmdb", {}).get("poster")

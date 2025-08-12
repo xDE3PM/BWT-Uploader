@@ -24,6 +24,11 @@ config = {
         "PTScreen": "ptscreen_api_key"        # Required if image_host is "PTScreen"
     },
 
+    "BWT": {
+        "username": "",   # Your BWTorrents UserName 
+        "password": ""    # Your BWTorrents Password 
+    },
+
     "bbcode_config": {
         "media_info_style": "[img]https://i.ibb.co/DfF7Pbt/Media-Info.png[/img]",
         "general_style": "[b][color=green]★ General ★[/color][/b]",
@@ -38,12 +43,6 @@ config = {
 # You may customize the visual style and layout, but DO NOT remove the following placeholders:
 #   - {movie_poster_url} : will be replaced with the movie/series poster image URL
 #   - {file_name}        : will be replaced with the actual file name
-#   - Replace Custom Media Info : manual note for replacing with custom MediaInfo if needed
-#   - {general_info}     : will be dynamically filled with general MediaInfo details
-#   - {video_info}       : will be dynamically filled with video track details
-#   - {audio_info}       : will be dynamically filled with audio track details
-#   - {text_info}        : will be dynamically filled with subtitle track details
-#   - {chapters_info}    : will be dynamically filled with chapter information
 #   - {screenshot_bbcode}: will be replaced with BBCode for uploaded screenshots
 
 BBCODE_TEMPLATE = """

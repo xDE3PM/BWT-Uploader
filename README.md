@@ -41,9 +41,8 @@ You must have these tools installed and accessible from your system’s PATH:
 - [Python 3.9+](https://www.python.org/downloads/)
 - [FFmpeg](https://ffmpeg.org/download.html)
 - [MediaInfo](https://mediaarea.net/en/MediaInfo)
-- [mkbrr](https://mkbrr.com/installation) *(optional)*  
-  - ⚠️ `mkbrr` is optional and automatically installs on Windows.
-  
+- [mkbrr](https://mkbrr.com/installation) *(optional)*
+
 ---
 
 ## 🚀 How to Use

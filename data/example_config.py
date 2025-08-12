@@ -25,8 +25,8 @@ config = {
     },
 
     "BWT": {
-        "username": "",   # Your BWTorrents UserName 
-        "password": ""    # Your BWTorrents Password 
+        "username": "your_username",   # Your BWTorrents UserName 
+        "password": "your_password"    # Your BWTorrents Password 
     },
 
     "bbcode_config": {

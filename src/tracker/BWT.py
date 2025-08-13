@@ -3,6 +3,7 @@ import json
 import re, sys
 import asyncio
 import requests
+import cloudscraper
 from src.ia import console
 from data.config import config
 from rich.table import Table
@@ -141,7 +142,20 @@ class BWTorrentUploader:
         self.filename = self.fmeta.get('filename_noext')
         self.username = config["BWT"]["username"]
         self.password = config["BWT"]["password"]
-        
+        self.session = cloudscraper.create_scraper(
+            browser={
+                'browser': 'chrome',
+                'platform': 'windows',
+                'mobile': False
+            }
+        )
+        self.session.headers.update({
+            "User-Agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/127.0.0.0 Safari/537.36"
+            )
+        })
         
     def load_metadata(self):
         bbcode_path = os.path.join(self.upload_folder, "[BBCode]Torrent_Description.txt")
@@ -291,7 +305,7 @@ class BWTorrentUploader:
         url = f"{self.base_url}/index.php"
         if os.path.exists(cookiefile):
             cookies = self.parse_cookie_file(cookiefile)
-            with requests.Session() as session:
+            with self.session as session:
                 session.cookies.update(cookies)
                 resp = session.get(url=url)
                 if "Logout" in resp.text or "logout" in resp.text:
@@ -303,7 +317,7 @@ class BWTorrentUploader:
 
     async def login(self, cookiefile):
         """Manual login and save cookies back to Netscape format file."""
-        with requests.Session() as session:
+        with self.session as session:
             r = session.get(f"{self.base_url}/login.php")
             await asyncio.sleep(0.5)
 
@@ -311,7 +325,7 @@ class BWTorrentUploader:
                 'username': self.username,
                 'password': self.password
             }
-            console.print(f"[cyan][*][/cyan] Logging in to {self.base_url}...")
+            console.print(f"[cyan][*][/cyan] Logging in to BWTorrents.Tv...")
             session.post(f"{self.base_url}/takelogin.php", data=data)
             await asyncio.sleep(0.5)
 
@@ -347,7 +361,7 @@ class BWTorrentUploader:
         if not asyncio.run(self.validate_credentials(meta)):
             error_exit()
         cookies = self.parse_cookie_file()
-        with requests.Session() as session:
+        with self.session as session:
             session.cookies.update(cookies)
 
         while True:

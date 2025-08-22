@@ -138,7 +138,7 @@ class MediaInfoExtractor:
             for i, key in enumerate(chapter_keys, 1):
                 timestamp = key.replace('_', ':')[:8]
                 raw_title = menu.get(key, f"Chapter {i:02d}")
-                title = re.sub(r'^\w{2}:(\s*)?', '', raw_title)
+                title = re.sub(r'^(?:\w{2}:|:)\s*', '', raw_title)
                 chapters_info.append(f"Chapter {i:02d}...........: {timestamp} - {title}")
         chapters_info = '\n'.join(chapters_info) if chapters_info else ''
 

@@ -4,7 +4,7 @@
 
 from src.ia import console
 from rich.prompt import Prompt
-import sys
+import sys, os
 
 from src.args import Args
 from src.filepath import FilePathInfo
@@ -21,6 +21,7 @@ from src.checkupdate import VersionChecker
 
 
 def main():
+    os.system('cls' if os.name == 'nt' else 'clear')
     console.print()
     console.rule(f"[bold magenta]🚀 BWT-Uploader [bold yellow]v{version} [bold green]- Created by [bold red]-={author}=-", style="bold cyan")
     console.print()

@@ -283,5 +283,5 @@ Feel free to open an [issue](https://github.com/xDE3PM/BWT-Uploader/issues) or [
 
 ## 🔗 Author
 
-**[@xDE3PM](https://github.com/xDE3PM)**  
+**[-=DE3PM=-](https://github.com/xDE3PM)**  
 Proudly made for the BwT community ❤️
